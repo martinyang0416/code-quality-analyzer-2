@@ -1,14 +1,1 @@
-a = int(input())
-perm = [4, 1, 3, 2, 0, 5]
-new_bits = [0] * 6
-
-for i in range(6):
-    bit = (a >> i) & 1
-    new_pos = perm[i]
-    new_bits[new_pos] = bit
-
-result = 0
-for j in range(6):
-    result += new_bits[j] << j
-
-print(result)
+Okay, so I have this programming problem to solve. Let's see what it's about. The input is a single integer a between 1 and 30, and I need to output another integer. The example given is when the input is 3, the output is 27. Hmm, wait, 3 cubed is 27. Oh right, maybe the problem is just to compute a cubed? But let me think again. Because maybe there's a trick here. Let me check. If a is 3, then 3*3*3 is 27, which matches the example. So perhaps the problem is indeed to output the cube of the inp
