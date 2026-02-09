@@ -1,19 +1,26 @@
-def is_valid_square(points):
-    dists = []
-    for i in range(4):
-        for j in range(i + 1, 4):
-            dx = points[i][0] - points[j][0]
-            dy = points[i][1] - points[j][1]
-            dists.append(dx * dx + dy * dy)
-    unique = sorted(set(dists))
-    if len(unique) != 2:
-        return False
-    a, b = unique
-    if b != 2 * a or a == 0:
-        return False
-    count_a = dists.count(a)
-    count_b = dists.count(b)
-    return count_a == 4 and count_b == 2
-
 n = int(input())
-fo
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+count_a = [0] * 6  # Using indices 1 to 5
+count_b = [0] * 6
+
+for num in a:
+    count_a[num] += 1
+for num in b:
+    count_b[num] += 1
+
+possible = True
+for i in range(1, 6):
+    if (count_a[i] + count_b[i]) % 2 != 0:
+        possible = False
+        break
+
+if not possible:
+    print(-1)
+else:
+    total_abs = 0
+    for i in range(1, 6):
+        total = count_a[i] + count_b[i]
+        target = total // 2
+      
