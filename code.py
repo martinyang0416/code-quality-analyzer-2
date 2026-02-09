@@ -1,24 +1,18 @@
-mod=10**9+7
-
-
-def main():
-    n, m = map(int, input().split())
-    if abs(n - m) > 1:
-        return 0
-
-
-    fact = 1
-    for i in range(1, min(n, m) + 1):
-        fact = fact * i % mod
-
-
-
-    if n == m:
-        return fact ** 2 * 2 % mod
-    else:
-        return fact * fact * (min(n, m) + 1) % mod
-
-
-
-
-print(main())
+from math import ceil
+def gcdEx(a,b,x,y):
+    if not a:
+        return 0,1,b
+    x1,y1,g=gcdEx(b%a,a,0,0)
+    x=y1-(b//a)*x1
+    y=x1
+    return x,y,g
+a,b,c=map(int, input().split())
+x,y,g=gcdEx(a,b,0,0)
+if c%g:
+    print("No")
+else:    
+    x,y=x*c//g,y*c//g
+    k1=ceil(-x*g/b)
+    k2=(y*g)//a
+    c=abs(k2-k1+1)
+    print("Yes" if c>0 else "No")
