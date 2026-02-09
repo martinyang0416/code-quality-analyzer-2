@@ -1,23 +1,19 @@
-from collections import deque
+MOD = 10**9 + 7
 
-class Edge:
-    __slots__ = ('to', 'rev', 'capacity')
-    def __init__(self, to, rev, capacity):
-        self.to = to
-        self.rev = rev
-        self.capacity = capacity
+def main():
+    import sys
+    from collections import deque
 
-def max_flow(adj, s, t):
-    N = len(adj)
-    level = [0] * N
-    ptr = [0] * N
+    N, M = map(int, sys.stdin.readline().split())
+    strings = [sys.stdin.readline().strip() for _ in range(M)]
+    
+    # Build adjacency list for the DAG
+    adj = [[] for _ in range(N)]
+    in_degree = [0] * N
 
-    def bfs():
-        q = deque()
-        level[:] = [-1] * N
-        level[s] = 0
-        q.append(s)
-        while q:
-            v = q.popleft()
-            for edge in adj[v]:
-                if edge.capacity
+    for m in range(M):
+        s = strings[m]
+        for i in range(N):
+            for j in range(N):
+                if s[i] == 'H' and s[j] == 'E':
+                    # Edge from j to i: j must come be
