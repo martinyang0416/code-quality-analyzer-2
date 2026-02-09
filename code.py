@@ -1,10 +1,3 @@
 a = int(input())
-if a < 10:
-    print("YES")
-else:
-    tens = a // 10
-    units = a % 10
-    if tens + units == 10:
-        print("YES")
-    else:
-        print("NO")
+sum_digits = (a // 10) + (a % 10)
+print("YES" if sum_digits % 5 == 0 else "NO")
