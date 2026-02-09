@@ -1,23 +1,17 @@
-from heapq import heappush, heappop
+import sys
 
-def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    n = int(data[idx])
-    idx += 1
-    m = int(data[idx])
-    idx += 1
-    q = int(data[idx])
-    idx += 1
-
-    types = list(map(int, data[idx:idx + n]))
-    idx += n
-
-    unique_types = list(sorted(set(types)))
-    type_to_idx = {t: i for i, t in enumerate(unique_types)}
-    T = len(unique_types)
-
-    adj = [[] for _ in range(n + 1)]  # 1-based
-    for _ in range(m)
+def generate_partitions():
+    elements = [1, 2, 3, 4, 5, 6]
+    all_partitions = []
+    
+    def backtrack(remaining, path):
+        if not remaining:
+            all_partitions.append(path.copy())
+            return
+        first = remaining[0]
+        for i in range(1, len(remaining)):
+            pair = (first, remaining[i])
+            new_remaining = remaining[1:i] + remaining[i+1:]
+            path.append(pair)
+            backtrack(new_remaining, path)
+            path.pop()
