@@ -1,16 +1,26 @@
-n = int(input())
+import sys
+sys.setrecursionlimit(1 << 25)
 
-if n == 1:
-    print(1)
-elif n == 2:
-    print(2)
-elif n == 3:
-    print(6)
-else:
-    if n % 2 == 0:
-        if n % 3 == 0:
-            print((n-1)*(n-2)*(n-3))
-        else:
-            print(n*(n-1)*(n-3))
-    else:
-        print(n*(n-1)*(n-2))
+def pow_less(a, b, limit):
+    res = 1
+    for _ in range(b):
+        res *= a
+        if res >= limit:
+            return False
+    return res < limit
+
+memo = {}
+
+def can_win(a, b, n):
+    key = (a, b)
+    if key in memo:
+        return memo[key]
+    
+    move_a_valid = pow_less(a + 1, b, n)
+    move_b_valid = pow_less(a, b + 1, n)
+    
+    if not move_a_valid and not move_b_valid:
+        memo[key] = False
+        return False
+    
+    result = False
