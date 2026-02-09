@@ -1,23 +1,22 @@
-MOD = 10**9 + 7
+import heapq
+from collections import defaultdict
 
-n, k = map(int, input().split())
-a = list(map(int, input().split()))
+n, m = map(int, input().split())
+adj = [[] for _ in range(n + 1)]  # 1-based indexing for nodes
 
-if k == 0:
-    print(' '.join(map(str, a)))
-    exit()
+for _ in range(m):
+    a, b, l, r = map(int, input().split())
+    adj[a].append((b, l, r))
+    adj[b].append((a, l, r))
 
-max_fact = 2000
-fact = [1] * (max_fact + 1)
-for i in range(1, max_fact + 1):
-    fact[i] = fact[i-1] * i % MOD
+heap = []
+# Initialize with edges from node 1
+for v, l, r in adj[1]:
+    if l <= r:
+        heapq.heappush(heap, (-(r - l + 1), l, r, v))
 
-inv_fact = [1] * (max_fact + 1)
-inv_fact[max_fact] = pow(fact[max_fact], MOD - 2, MOD)
-for i in range(max_fact - 1, -1, -1):
-    inv_fact[i] = inv_fact[i+1] * (i+1) % MOD
+intervals = defaultdict(list)
+found = False
 
-comb = [0] * (2001)
-for d in range(2001):
-    if d == 0:
-        comb[d] 
+while heap:
+    neg_len, L, R, u = heapq.heappop
