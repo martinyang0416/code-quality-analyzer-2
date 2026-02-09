@@ -1,5 +1,2 @@
 a = int(input())
-if a % 5 == 0 or a % 23 == 0:
-    print("YES")
-else:
-    print("NO")
+print(1 if any(int(c) % 2 != 0 for c in str(a)) else 0)
