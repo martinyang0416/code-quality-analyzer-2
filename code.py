@@ -1,25 +1,18 @@
-m = int(input())
-r = list(map(int, input().split()))
-used = set()
-perm = [None] * m
+import sys
 
-for i in range(m):
-    x = r[i]
-    if x <= m and x not in used:
-        perm[i] = x
-        used.add(x)
-
-# Collect remaining numbers
-remain = []
-for num in range(1, m + 1):
-    if num not in used:
-        remain.append(num)
-
-# Assign remaining numbers to None positions
-k = 0
-for i in range(m):
-    if perm[i] is None:
-        perm[i] = remain[k]
-        k += 1
-
-print(' '.join(map(str, perm)))
+def main():
+    n, t = map(int, sys.stdin.readline().split())
+    arr = list(map(int, sys.stdin.readline().split()))
+    
+    # Precompute log_table for finding the maximum exponent k where 2^k <= length
+    log_table = [0] * (n + 1)
+    for i in range(2, n + 1):
+        log_table[i] = log_table[i // 2] + 1
+    max_k = log_table[n]
+    
+    # Initialize the Sparse Table
+    st = [[0] * n for _ in range(max_k + 1)]
+    for i in range(n):
+        st[0][i] = arr[i]
+    
+    # Fill the S
