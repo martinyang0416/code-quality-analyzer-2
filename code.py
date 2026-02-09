@@ -1,17 +1,25 @@
-def are_equivalent(a, b):
-    if a == b:
-        return True
-    n = len(a)
-    if n % 2 != 0:
-        return False
-    if sorted(a) != sorted(b):
-        return False
-    mid = n // 2
-    a1, a2 = a[:mid], a[mid:]
-    b1, b2 = b[:mid], b[mid:]
-    return (are_equivalent(a1, b1) and are_equivalent(a2, b2)) or (are_equivalent(a1, b2) and are_equivalent(a2, b1))
+import heapq
 
-s1 = input().strip()
-s2 = input().strip()
-
-print("YES" if are_equivalent(s1, s2) else "NO")
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    n = int(data[idx])
+    w = int(data[idx+1])
+    k = int(data[idx+2])
+    idx +=3
+    a = list(map(int, data[idx:idx+n]))
+    idx +=n
+    t = list(map(int, data[idx:idx+n]))
+    saved = []
+    for ti in t:
+        saved_i = ti - (ti +1)//2
+        saved.append(saved_i)
+    
+    max_pleasure = 0
+    
+    for x in range(n):
+        current_sum_t = 0
+        current_sum_a = 0
+        heap =
