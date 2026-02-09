@@ -1,17 +1,24 @@
-def main():
-    s = input().strip()
-    s_list = list(s)
-    n = len(s)
-    res = []
-    for i in range(1, n + 1):
-        prefix = s_list[:i]
-        reversed_p = prefix[::-1]
-        if reversed_p < prefix:
-            res.append(1)
-            s_list[:i] = reversed_p
-        else:
-            res.append(0)
-    print(' '.join(map(str, res)))
+n, m = map(int, input().split())
+statements = []
+count_plus = [0] * (n + 1)
+count_minus = [0] * (n + 1)
 
-if __name__ == "__main__":
-    main()
+for _ in range(n):
+    stmt = input().strip()
+    t = stmt[0]
+    a = int(stmt[1:])
+    statements.append((t, a))
+    if t == '+':
+        count_plus[a] += 1
+    else:
+        count_minus[a] += 1
+
+total_minus = sum(count_minus)
+possible_leaders = set()
+
+for x in range(1, n + 1):
+    cp = count_plus[x]
+    cm = count_minus[x]
+    c = cp + (total_minus - cm)
+    if c == m:
+        possible_lead
