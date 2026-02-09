@@ -1,2 +1,2 @@
 a = int(input())
-print(1 if a % 2 else 0)
+print(1 if any(int(c) % 2 for c in str(a)) else 0)
