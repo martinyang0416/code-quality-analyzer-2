@@ -1,17 +1,15 @@
-def minChanges(s, k):
-    n = len(s)
-    # Precompute the cost matrix
-    cost = [[0] * n for _ in range(n)]
-    for i in range(n):
-        for j in range(i, n):
-            left, right = i, j
-            current_cost = 0
-            while left < right:
-                if s[left] != s[right]:
-                    current_cost += 1
-                left += 1
-                right -= 1
-            cost[i][j] = current_cost
-    
-    # Initialize DP table
-    dp = [[float('inf')] * (k + 1) for _ in ra
+def smallestRangeII(A, K):
+    A.sort()
+    n = len(A)
+    ans = A[-1] - A[0]
+    for i in range(1, n):
+        left_max = A[i-1] + K
+        right_max = A[-1] - K
+        current_max = max(left_max, right_max)
+        left_min = A[0] + K
+        right_min = A[i] - K
+        current_min = min(left_min, right_min)
+        current_diff = current_max - current_min
+        if current_diff < ans:
+            ans = current_diff
+    return ans
