@@ -1,19 +1,9 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
+In Omkar's last class of math, he learned about the least common multiple, or LCM. LCM(a, b) is the smallest positive integer x which is divisible by both a and b.
 
-import builtins
-import re
+Omkar, having a laudably curious mind, immediately thought of a problem involving the LCM operation: given an integer n, find positive integers a and b such that a + b = n and LCM(a, b) is the minimum value possible.
+
+Can you help Omkar solve his ludicrously challenging math problem?
+
+Input
+
+Each test contains multiple test cases. Th
