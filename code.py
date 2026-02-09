@@ -1,16 +1,27 @@
-n, *rest = map(int, open(0).read().split())
-p = rest[:n]
+n = int(input())
 
-count = 0
-i = 0
-while i < n:
-    if p[i] == i + 1:
-        if i + 1 < n and p[i+1] == i + 2:
-            count += 1
-            i += 2
-        else:
-            count += 1
-            i += 1
+def left_rotate_1(s):
+    if len(s) <= 1:
+        return s
+    return s[1:] + s[0]
+
+def right_rotate_1(s):
+    if len(s) <= 1:
+        return s
+    return s[-1] + s[:-1]
+
+def swap_halves(s):
+    n = len(s)
+    if n % 2 == 0:
+        mid = n // 2
+        return s[mid:] + s[:mid]
     else:
-        i += 1
-print(count)
+        mid = n // 2
+        return s[mid+1:] + s[mid] + s[:mid]
+
+def decrement_digits(s):
+    res = []
+    for c in s:
+        if c.isdigit():
+            res.append(str((int(c) - 1) % 10))
+  
