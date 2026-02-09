@@ -1,3 +1,34 @@
-Okay, let's see. The problem is to take an integer a between 1 and 30 and output a single integer. The example given is input 3 outputs 27. Hmm, 3 cubed is 27. Oh right, maybe the task is just to compute a cubed? So the output is a multiplied by itself three times. That seems straightforward. Wait, but maybe there's a trick? Let me think again. Let's see another example. If a is 2, then output would be 8, which is 2^3, and for 1 it's 1. So yeah, probably just the cube of a.
-
-So the solution woul
+a = int(input())
+presidents = [
+    "Washington",
+    "Adams",
+    "Jefferson",
+    "Madison",
+    "Monroe",
+    "Adams",
+    "Jackson",
+    "Van Buren",
+    "Harrison",
+    "Tyler",
+    "Polk",
+    "Taylor",
+    "Fillmore",
+    "Pierce",
+    "Buchanan",
+    "Lincoln",
+    "Johnson",
+    "Grant",
+    "Hayes",
+    "Garfield",
+    "Arthur",
+    "Cleveland",
+    "Harrison",
+    "Cleveland",
+    "McKinley",
+    "Roosevelt",
+    "Taft",
+    "Wilson",
+    "Harding",
+    "Coolidge",
+    "Hoover",
+    "
