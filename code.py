@@ -1,18 +1,18 @@
-import sys
-from collections import defaultdict
-
 def main():
-    n = int(sys.stdin.readline())
-    count_dict = defaultdict(int)
-    for _ in range(n):
-        s = sys.stdin.readline().strip()
-        sorted_s = ''.join(sorted(s))
-        count_dict[sorted_s] += 1
-    total = 0
-    for cnt in count_dict.values():
-        if cnt >= 2:
-            total += cnt * (cnt - 1) // 2
-    print(total)
+    import sys
+    n, m = map(int, sys.stdin.readline().split())
+    variables = []
+    name_to_index = {}
 
-if __name__ == "__main__":
-    main()
+    for idx in range(n):
+        line = sys.stdin.readline().strip()
+        parts = line.split()
+        name = parts[0]
+        expr = ' '.join(parts[2:])  # everything after ":", excluding :=
+
+        if expr[0] in '01':
+            # constant case
+            const_str = expr
+            assert len(const_str) == m
+            variables.append(('const', const_str))
+        e
