@@ -1,19 +1,16 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
 import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
 
-import builtins
-import re
+n = int(input())
+for _ in range(n):
+    a_str, b_str = input().split()
+    a = int(a_str)
+    if a == 0:
+        if all(c == '0' for c in b_str):
+            print(0)
+        else:
+            print(int(b_str))
+    else:
+        mod = 0
+        for c in b_str:
+            mod = (mod * 10 + int(c)) % a
+        print(math.gcd(a, mod))
