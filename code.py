@@ -1,23 +1,12 @@
-def solve():
-    import sys
-    from collections import defaultdict
+MOD = 998244353
 
-    t = sys.stdin.readline().strip()
-    k = int(sys.stdin.readline())
+n = int(input())
+# The array is read but not used since the sum is n*(n+1)/2 regardless of the fixed values
+input().split()
 
-    n = len(t)
-    cnt = defaultdict(int)
-    for c in t:
-        cnt[c] += 1
+n_mod = n % MOD
+sum_n = (n_mod * (n + 1)) % MOD
+inv_two = pow(2, MOD-2, MOD)
+result = (sum_n * inv_two) % MOD
 
-    divisors = set()
-    for d in range(1, int(k**0.5) + 1):
-        if k % d == 0:
-            if d <= n:
-                divisors.add(d)
-            if (k // d) <= n:
-                divisors.add(k // d)
-    divisors = sorted(divisors)
-
-    required = defaultdict(list)
-    for 
+print(result)
