@@ -1,23 +1,23 @@
-def get_divisors():
-    divisors = []
-    for i in range(1, 361):
-        if 360 % i == 0:
-            divisors.append(i)
-    divisors.sort(reverse=True)
-    return divisors
+MOD = 10**9 + 7
+
+import sys
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    divisors = get_divisors()
+    input = sys.stdin.read
+    data = input().split()
+    T = int(data[0])
+    index = 1
     for _ in range(T):
-        n = int(input[idx])
-        idx += 1
-        a = list(map(int, input[idx:idx+n]))
-        idx += n
-        found = False
-        for d in divisors:
-   
+        N = int(data[index])
+        K = int(data[index + 1])
+        index += 2
+        if N == 0:
+            ans = ((K-1) * K) % MOD
+        else:
+            if K == 1:
+                ans = (N * N) % MOD
+            else:
+                m = K // 2
+                round_ = N + m
+                if K % 2 == 0:
+                    ans = ((rou
