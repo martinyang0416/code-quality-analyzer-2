@@ -1,20 +1,23 @@
-n = int(input())
-grid = [input().strip() for _ in range(n)]
-count = 0
+def solve():
+    import sys
+    from collections import defaultdict
 
-for A in range(n):
-    # Rotate each row by A positions to the right
-    rotated = []
-    for row in grid:
-        if A == 0:
-            rotated_row = row
-        else:
-            rotated_row = row[-A:] + row[:-A]
-        rotated.append(rotated_row)
-    
-    # Check if the rotated grid is symmetric
-    symmetric = True
-    for i in range(n):
-        for j in range(n):
-            if rotated[i][j] != rotated[j][i]:
-         
+    t = sys.stdin.readline().strip()
+    k = int(sys.stdin.readline())
+
+    n = len(t)
+    cnt = defaultdict(int)
+    for c in t:
+        cnt[c] += 1
+
+    divisors = set()
+    for d in range(1, int(k**0.5) + 1):
+        if k % d == 0:
+            if d <= n:
+                divisors.add(d)
+            if (k // d) <= n:
+                divisors.add(k // d)
+    divisors = sorted(divisors)
+
+    required = defaultdict(list)
+    for 
