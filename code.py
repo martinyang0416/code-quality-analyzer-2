@@ -1,25 +1,20 @@
-class TrieNode:
-    __slots__ = ['children']
-    def __init__(self):
-        self.children = [None, None]  # children for 0 and 1
+import sys
+from collections import deque
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    C = int(input[idx])
-    idx += 1
-    N = int(input[idx])
-    idx += 1
+    sys.setrecursionlimit(1 << 25)
+    N = int(sys.stdin.readline())
+    s = sys.stdin.readline().strip()
+    required = [False] * (N + 1)
+    for i in range(N):
+        if s[i] == '1':
+            required[i+1] = True
 
-    masks = []
-    for _ in range(N):
-        s = input[idx]
-        idx += 1
-        mask = 0
-        for c in s:
-            mask <<= 1
-            if c == 'H':
-                mask |= 1
-        masks.append(mask)
-  
+    # Read the tree edges
+    adj = [[] for _ in range(N+1)]
+    for _ in range(N-1):
+        a, b = map(int, sys.stdin.readline().split())
+        adj[a].append(b)
+        adj[b].append(a)
+
+    # Find base components using BF
