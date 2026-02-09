@@ -1,17 +1,19 @@
-import sys
-from collections import defaultdict, deque
+def comb2(n):
+    return n * (n - 1) // 2 if n >= 2 else 0
 
-def main():
-    n = int(sys.stdin.readline())
-    strings = [sys.stdin.readline().strip() for _ in range(n)]
-    unique_strings = list(set(strings))
-    if len(unique_strings) != n:
-        print("NO")
-        return
+def compute(s, A, B, C):
+    if s < 0:
+        return 0
+    a = A + 1
+    b_val = B + 1
+    c_val = C + 1
 
-    # Check if all are single character
-    all_single = all(len(s) == 1 for s in unique_strings)
-    if all_single:
-        chars = [s[0] for s in unique_strings]
-        if len(chars) != len(set(chars)):
-            print("NO
+    c0 = comb2(s + 2)
+    
+    overA = comb2(s - a + 2) if s >= a else 0
+    overB = comb2(s - b_val + 2) if s >= b_val else 0
+    overC = comb2(s - c_val + 2) if s >= c_val else 0
+    sum1 = overA + overB + overC
+
+    overAB = comb2(s - a - b_val + 2) if s >= (a + b_val) else 0
+    overAC = comb2(s - a - c_val + 2) if s >= (a + c_
