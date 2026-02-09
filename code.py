@@ -1,12 +1,13 @@
-from collections import defaultdict
+import math
 
-def subarraysDivByK(A, K):
-    count_map = defaultdict(int)
-    count_map[0] = 1
-    prefix_mod = 0
-    result = 0
-    for num in A:
-        prefix_mod = (prefix_mod + num) % K
-        result += count_map[prefix_mod]
-        count_map[prefix_mod] += 1
-    return result
+def mirrorReflection(p, q):
+    if q == 0:
+        return 0
+    m = (p * q) // math.gcd(p, q)
+    a, b = m // p, m // q
+    if a % 2 == 0 and b % 2 == 1:
+        return 0
+    elif a % 2 == 1 and b % 2 == 1:
+        return 1
+    else:
+        return 2
