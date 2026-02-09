@@ -5,16 +5,16 @@ def main():
     sys.setrecursionlimit(1 << 25)
     N = int(sys.stdin.readline())
     s = sys.stdin.readline().strip()
-    required = [False] * (N + 1)
-    for i in range(N):
-        if s[i] == '1':
-            required[i+1] = True
-
-    # Read the tree edges
-    adj = [[] for _ in range(N+1)]
+    edges = [[] for _ in range(N+1)]
     for _ in range(N-1):
         a, b = map(int, sys.stdin.readline().split())
-        adj[a].append(b)
-        adj[b].append(a)
+        edges[a].append(b)
+        edges[b].append(a)
 
-    # Find base components using BF
+    # Collect Cowflix nodes
+    cow_nodes = []
+    for i in range(1, N+1):
+        if s[i-1] == '1':
+            cow_nodes.append(i)
+    M = len(cow_nodes)
+    if M == 0
