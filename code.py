@@ -1,19 +1,18 @@
-import sys
-
 def compute(s):
-    target = ['b', 'e', 's', 's', 'i', 'e']
-    count = [0] * 7
-    total = 0
-    for c in s:
-        new_count = [0] * 7
-        # Handle new substrings starting at current character
-        if c == target[0]:
-            new_count[1] += 1
-        else:
-            new_count[0] += 1
-        # Process previous counts
-        for i in range(7):
-            if count[i] > 0:
-                new_count[i] += count[i]
-                if c == target[i]:
-                    n
+    target = 'bessie'
+    n = len(s)
+    m = len(target)
+    completions = []
+    dp = [-1] * (m + 1)  # dp[0] is initialized to -1 (start), others to INF
+
+    # Initialize dp for target sequence
+    for i in range(1, m + 1):
+        dp[i] = float('inf')
+
+    current_start = 0  # start of the current "bessie" being tracked
+
+    for i in range(n):
+        c = s[i]
+        # Update dp in reverse to prevent overwriting before checking
+        for j in range(m, 0, -1):
+            if
