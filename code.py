@@ -1,17 +1,17 @@
-import sys
+a, b, h, w, n = map(int, input().split())
+a_list = list(map(int, input().split()))
 
-def main():
-    n, x, y = map(int, sys.stdin.readline().split())
-    for _ in range(n):
-        a = int(sys.stdin.readline())
-        low = 0.0
-        high = a * max(1.0 / x, 1.0 / y) + 1.0
-        for __ in range(100):
-            mid = (low + high) / 2
-            sum_mid = (mid * x).__floor__() + (mid * y).__floor__()
-            if sum_mid < a:
-                low = mid
-            else:
-                high = mid
-        t = high
-        sum_floor = (t * x).__floor__() + (t * y
+def compute_min_k(a_target, b_target, h_initial, w_initial, sorted_a):
+    # Compute product needed
+    if h_initial >= a_target:
+        ph = 1
+    else:
+        ph = (a_target + h_initial - 1) // h_initial
+    if w_initial >= b_target:
+        pw = 1
+    else:
+        pw = (b_target + w_initial - 1) // w_initial
+    # Compute prefix up to min(n, 40)
+    max_k = min(len(sorted_a), 40)
+    prefix = [1]
+    for ai
