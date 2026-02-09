@@ -1,18 +1,14 @@
-import sys
+import math
 
-def main():
-    n, t = map(int, sys.stdin.readline().split())
-    arr = list(map(int, sys.stdin.readline().split()))
-    
-    # Precompute log_table for finding the maximum exponent k where 2^k <= length
-    log_table = [0] * (n + 1)
-    for i in range(2, n + 1):
-        log_table[i] = log_table[i // 2] + 1
-    max_k = log_table[n]
-    
-    # Initialize the Sparse Table
-    st = [[0] * n for _ in range(max_k + 1)]
-    for i in range(n):
-        st[0][i] = arr[i]
-    
-    # Fill the S
+n, p = map(int, input().split())
+
+t = (p // 2) + 1
+
+s = 0.0
+for k in range(t, p + 1):
+    s += math.comb(p, k) * (0.5 ** p)
+
+prob = 1.0 - (1.0 - s) ** n
+
+# Format the output to 8 decimal places
+print("{0:.8f}".format(prob))
