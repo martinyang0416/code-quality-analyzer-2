@@ -1,19 +1,22 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
-
-import builtins
-import re
+def fun(s):
+  if s.strip("0") == "" or s.strip("1") == "":
+    return s
+ 
+  ans = ""
+  n = len(s)
+ 
+  for i in range(0, n):
+    if s[0] == "0":
+        ans = ans + "01"
+    else:
+        ans = ans + "10"
+    
+  
+  return ans
+ 
+tc = int(input())
+ 
+while tc > 0:
+   s = str(input())
+   print(fun(s))
+   tc = tc - 1
