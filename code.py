@@ -1,22 +1,25 @@
-n, m = map(int, input().split())
-c = list(map(int, input().split()))
+m = int(input())
+r = list(map(int, input().split()))
+used = set()
+perm = [None] * m
 
-cnt = [0] * m
-for num in c:
-    rem = num % m
-    cnt[rem] += 1
+for i in range(m):
+    x = r[i]
+    if x <= m and x not in used:
+        perm[i] = x
+        used.add(x)
 
-total_pairs = 0
+# Collect remaining numbers
+remain = []
+for num in range(1, m + 1):
+    if num not in used:
+        remain.append(num)
 
-# Handle remainder 0
-total_pairs += cnt[0] // 2
+# Assign remaining numbers to None positions
+k = 0
+for i in range(m):
+    if perm[i] is None:
+        perm[i] = remain[k]
+        k += 1
 
-# Iterate through possible remainders
-for r in range(1, (m // 2) + 1):
-    if r != m - r:
-        total_pairs += min(cnt[r], cnt[m - r])
-    else:
-        # Handle the case where r is exactly half of m (even m)
-        total_pairs += (cnt[r] // 2)
-
-print(total_pairs * 2)
+print(' '.join(map(str, perm)))
