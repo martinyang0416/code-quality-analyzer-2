@@ -1,27 +1,18 @@
+import sys
+from collections import defaultdict
+
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx += 1
-    M = int(input[idx])
-    idx += 1
+    sys.setrecursionlimit(1 << 25)
+    n = int(sys.stdin.readline())
+    edges = [[] for _ in range(n + 1)]
+    for _ in range(n - 1):
+        u, v = map(int, sys.stdin.readline().split())
+        edges[u].append(v)
+        edges[v].append(u)
+    f = list(map(int, sys.stdin.readline().split()))
+    f = [0] + f  # 1-based indexing
 
-    D = []
-    for _ in range(N):
-        D.append(int(input[idx]))
-        idx += 1
-
-    W = []
-    for _ in range(M):
-        W.append(int(input[idx]))
-        idx += 1
-
-    INF = float('inf')
-    dp = [ [INF] * (M + 1) for _ in range(N + 1) ]
-    dp[0][0] = 0
-
-    for i in range(1, N + 1):
-        d = D[i - 1]
-        current_min = INF
-        
+    parent = [0] * (n + 1)
+    size = [0] * (n + 1)
+    count = [0] * (n + 1)
+    mono = [False] * (n + 1)
