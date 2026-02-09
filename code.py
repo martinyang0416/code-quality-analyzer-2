@@ -1,22 +1,23 @@
-from collections import defaultdict
+n, m = map(int, input().split())
+grid = [list(input().strip()) for _ in range(n)]
 
-def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    N = int(data[0])
-    idx = 1
-    group_seats = defaultdict(list)
-    for _ in range(N):
-        s = int(data[idx])
-        g = int(data[idx+1])
-        group_seats[g].append(s)
-        idx += 2
+flowers = []
+for i in range(n):
+    for j in range(m):
+        if grid[i][j] == 'f':
+            flowers.append((i, j))
 
-    # Each group must have at least one seat, so no need to handle empty groups
-    groups = list(group_seats.keys())
-    if len(groups) == 0:
-        print(0)
-        return
+if not flowers:
+    for row in grid:
+        print(''.join(row))
+    exit()
 
-    # P
+min_r = min(i for i, j in flowers)
+max_r = max(i for i, j in flowers)
+min_c = min(j for i, j in flowers)
+max_c = max(j for i, j in flowers)
+
+single = (min_r == max_r) and (min_c == max_c)
+
+if single:
+    top = min_r - 1
