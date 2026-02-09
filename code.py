@@ -1,24 +1,20 @@
-n, m = map(int, input().split())
-statements = []
-count_plus = [0] * (n + 1)
-count_minus = [0] * (n + 1)
+import heapq
 
+n = int(input())
+animals = []
 for _ in range(n):
-    stmt = input().strip()
-    t = stmt[0]
-    a = int(stmt[1:])
-    statements.append((t, a))
-    if t == '+':
-        count_plus[a] += 1
-    else:
-        count_minus[a] += 1
+    f, d = map(int, input().split())
+    animals.append((d, f))
 
-total_minus = sum(count_minus)
-possible_leaders = set()
+animals.sort()
+heap = []
+sum_total = 0
 
-for x in range(1, n + 1):
-    cp = count_plus[x]
-    cm = count_minus[x]
-    c = cp + (total_minus - cm)
-    if c == m:
-        possible_lead
+for d, f in animals:
+    heapq.heappush(heap, f)
+    sum_total += f
+    if len(heap) > d:
+        removed = heapq.heappop(heap)
+        sum_total -= removed
+
+print(sum_total)
