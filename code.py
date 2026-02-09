@@ -1,19 +1,27 @@
-import sys
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    M = int(input[idx])
+    idx += 1
 
-def longest_common_substring(s1, s2):
-    s1 = s1.lower()
-    s2 = s2.lower()
-    n = len(s1)
-    m = len(s2)
-    max_length = 0
-    prev_row = [0] * (m + 1)
-    for i in range(n):
-        current_row = [0] * (m + 1)
-        for j in range(m):
-            if s1[i] == s2[j]:
-                current_row[j+1] = prev_row[j] + 1
-                if current_row[j+1] > max_length:
-                    max_length = current_row[j+1]
-            else:
-                current_row[j+1] = 0
-       
+    D = []
+    for _ in range(N):
+        D.append(int(input[idx]))
+        idx += 1
+
+    W = []
+    for _ in range(M):
+        W.append(int(input[idx]))
+        idx += 1
+
+    INF = float('inf')
+    dp = [ [INF] * (M + 1) for _ in range(N + 1) ]
+    dp[0][0] = 0
+
+    for i in range(1, N + 1):
+        d = D[i - 1]
+        current_min = INF
+        
