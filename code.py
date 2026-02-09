@@ -1,15 +1,17 @@
-def longestDiverseString(a: int, b: int, c: int) -> str:
-    res = []
-    counts = {'a': a, 'b': b, 'c': c}
-    
-    while True:
-        # Check if all counts are zero
-        total = counts['a'] + counts['b'] + counts['c']
-        if total == 0:
-            break
-        
-        # Determine the last two characters in the result
-        last_char = res[-1] if res else ''
-        second_last_char = res[-2] if len(res) >= 2 else ''
-        
-        # Determine forbidden character if last two are 
+def generate_string(A, B):
+    result = []
+    while A > 0 or B > 0:
+        if len(result) >= 2 and result[-1] == result[-2]:
+            last_char = result[-1]
+            if last_char == 'a':
+                if B == 0:
+                    result.append('a')
+                    A -= 1
+                else:
+                    result.append('b')
+                    B -= 1
+            else:
+                if A == 0:
+                    result.append('b')
+                    B -= 1
+             
