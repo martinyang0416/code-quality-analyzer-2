@@ -1,20 +1,20 @@
-import sys
+n = int(input())
+events = []
+for _ in range(n):
+    s, d = map(int, input().split())
+    end = s + d
+    events.append((s, 0))   # 0 represents start event
+    events.append((end, 1)) # 1 represents end event
 
-def main():
-    input = sys.stdin.read
-    data = input().split()
-    ptr = 0
-    t = int(data[ptr])
-    ptr += 1
-    for _ in range(t):
-        n, q = int(data[ptr]), int(data[ptr+1])
-        ptr += 2
-        s = data[ptr]
-        ptr += 1
-        prefix_sum = [0] * (n + 1)
-        for i in range(1, n+1):
-            prefix_sum[i] = prefix_sum[i-1] + (1 if s[i-1] == '1' else 0)
-        for __ in range(q):
-            l = int(data[ptr])
-            r = int(data[ptr+1])
-            pt
+# Sort the events by time, and for same time, start events come before end events
+events.sort(key=lambda x: (x[0], x[1]))
+
+current = 0
+max_current = 0
+
+for time, typ in events:
+    if typ == 0:
+        current += 1
+        if current > max_current:
+            max_current = current
+    els
