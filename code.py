@@ -1,22 +1,21 @@
 import sys
 
-def main():
+def solve():
     input = sys.stdin.read().split()
-    T = int(input[0])
-    idx = 1
+    idx = 0
+    T = int(input[idx])
+    idx += 1
     for _ in range(T):
-        n = int(input[idx])
-        k = int(input[idx+1])
-        idx +=2
-        if k == 2 or n == k or k == 4:
-            print(-1)
-        else:
-            m = k -2
-            if n % m != 0:
-                print(-1)
-            else:
-                block = '('*(m//2) + ')'*(m//2)
-                print(block * (n//m))
-
-if __name__ == "__main__":
-    main()
+        N, D = int(input[idx]), int(input[idx + 1])
+        idx += 2
+        C = list(map(int, input[idx:idx + N]))
+        idx += N
+        C.sort()
+        
+        low = 0.0
+        high = 1e18
+        eps = 1e-12  # Increased precision for binary search
+        
+        # Perform binary search with sufficient iterations
+        for _ in range(100):
+           
