@@ -1,21 +1,15 @@
-def largestRectangleArea(heights):
-    n = len(heights)
-    if n == 0:
-        return 0
-    left = [-1] * n
-    right = [n] * n
-    stack = []
-    
-    for i in range(n):
-        while stack and heights[stack[-1]] >= heights[i]:
-            stack.pop()
-        if stack:
-            left[i] = stack[-1]
-        stack.append(i)
-    
-    stack = []
-    for i in reversed(range(n)):
-        while stack and heights[stack[-1]] >= heights[i]:
-            stack.pop()
-        if stack:
-            right[i]
+def new21Game(N, K, W):
+    if K == 0:
+        return 1.0
+    dp = [0.0] * K
+    current_sum = 0.0
+    for s in range(K-1, -1, -1):
+        d_min = K - s
+        d_max = min(W, N - s)
+        count1 = max(0, d_max - d_min + 1) if d_max >= d_min else 0
+        dp[s] = (current_sum + count1) / W
+        if s + W <= K - 1:
+            current_sum += dp[s] - dp[s + W]
+        else:
+            current_sum += dp[s]
+    return dp[0]
