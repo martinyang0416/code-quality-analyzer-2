@@ -1,22 +1,30 @@
-n, m = map(int, input().split())
-INF = float('-inf')
-adj = [[INF] * n for _ in range(n)]
+import bisect
 
-for _ in range(m):
-    i, j, c_ij, c_ji = map(int, input().split())
-    i -= 1
-    j -= 1
-    adj[i][j] = c_ij
-    adj[j][i] = c_ji
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
 
-# Check for 2-length cycles
-for i in range(n):
-    for j in range(n):
-        if i != j and adj[i][j] != INF and adj[j][i] != INF:
-            if adj[i][j] + adj[j][i] > 0:
-                print(2)
-                exit()
+    n = int(input[ptr])
+    ptr += 1
 
-prev = [row[:] for row in adj]
+    p = list(map(int, input[ptr:ptr + n]))
+    ptr += n
 
-for k in range(2, n + 1
+    q = list(map(int, input[ptr:ptr + n]))
+    ptr += n
+
+    pos_p = [0] * (n + 1)
+    for i in range(n):
+        v = p[i]
+        pos_p[v] = i + 1
+
+    pos_q = [0] * (n + 1)
+    for i in range(n):
+        v = q[i]
+        pos_q[v] = i + 1
+
+    A = []
+    for i in range(n):
+        v = p[i]
+        j = pos_q[v]
