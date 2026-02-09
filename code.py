@@ -1,15 +1,20 @@
-def shortestSuperstring(A):
-    n = len(A)
-    # Compute overlap[i][j] = maximum suffix of A[i] matching prefix of A[j]
-    overlap = [[0] * n for _ in range(n)]
-    for i in range(n):
-        for j in range(n):
-            if i != j:
-                max_ov = 0
-                for k in range(min(len(A[i]), len(A[j])), 0, -1):
-                    if A[i].endswith(A[j][:k]):
-                        max_ov = k
-                        break
-                overlap[i][j] = max_ov
+MOD = 10**9 + 7
 
-    # DP[mask][i] =
+def maxSum(nums1, nums2):
+    # Compute prefix sums for both arrays
+    prefix1 = [0]
+    for num in nums1:
+        prefix1.append(prefix1[-1] + num)
+    
+    prefix2 = [0]
+    for num in nums2:
+        prefix2.append(prefix2[-1] + num)
+    
+    # Find common elements along with their indices in both arrays
+    commons = []
+    i = j = 0
+    n1, n2 = len(nums1), len(nums2)
+    while i < n1 and j < n2:
+        a, b = nums1[i], nums2[j]
+        if a == b:
+            commons.appen
