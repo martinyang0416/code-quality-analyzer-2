@@ -1,18 +1,16 @@
-import sys
-from collections import defaultdict
+n, m = map(int, input().split())
+t = min(n, m)
+# Initialize grid with 1-based indices
+grid = [[0] * (m + 1) for _ in range(n + 1)]
+for i in range(1, n + 1):
+    row = list(map(int, input().split()))
+    for j in range(1, m + 1):
+        grid[i][j] = row[j - 1]
 
-def main():
-    sys.setrecursionlimit(1 << 25)
-    n = int(sys.stdin.readline())
-    edges = [[] for _ in range(n + 1)]
-    for _ in range(n - 1):
-        u, v = map(int, sys.stdin.readline().split())
-        edges[u].append(v)
-        edges[v].append(u)
-    f = list(map(int, sys.stdin.readline().split()))
-    f = [0] + f  # 1-based indexing
+# Initialize prefix sum array
+prefix = [[0] * (m + 1) for _ in range(n + 1)]
 
-    parent = [0] * (n + 1)
-    size = [0] * (n + 1)
-    count = [0] * (n + 1)
-    mono = [False] * (n + 1)
+for i in range(1, n + 1):
+    for j in range(1, m + 1):
+        distance = (i + j - 2) * grid[i][j]
+        prefix[i][j] = distance + prefix[i-1][j] + prefix[i]
