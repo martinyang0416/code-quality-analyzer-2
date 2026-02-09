@@ -1,20 +1,25 @@
-import sys
 import bisect
 
 def main():
-    sys.setrecursionlimit(1 << 25)
-    N, Q = map(int, sys.stdin.readline().split())
-    s = sys.stdin.readline().strip()
-    spec = sys.stdin.readline().strip()
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    N = int(input[ptr])
+    ptr += 1
+    Q = int(input[ptr])
+    ptr += 1
 
-    L_indices = []
-    R_indices = []
-    for idx, c in enumerate(s):
-        if c == 'L':
-            L_indices.append(idx)
-        else:
-            R_indices.append(idx)
+    s = input[ptr]
+    ptr += 1
+    spec_str = input[ptr]
+    ptr += 1
 
-    # Compute ℓ and r arrays
-    ell = [(L_indices[i] + 1) for i in range(N)]
-    r = [(R_indices[i] + 1) for i in range(N)]
+    # Parse left and right endpoints
+    lefts = []
+    rights = []
+    for i in range(len(s)):
+        c = s[i]
+        if len(lefts) < N and c == 'L':
+            lefts.append(i + 1)  # positions are 1-based
+        elif len(rights) < N and c == 'R':
+         
