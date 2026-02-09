@@ -1,21 +1,18 @@
 import math
 
-def main():
-    import sys
-    n = int(sys.stdin.readline())
-    points = []
-    for _ in range(n):
-        x, y = map(float, sys.stdin.readline().split())
-        points.append((x, y))
-    
-    max_dist = 0.0
-    p1 = p2 = points[0]
-    
-    for i in range(n):
-        for j in range(i+1, n):
-            dx = points[i][0] - points[j][0]
-            dy = points[i][1] - points[j][1]
-            dist = dx*dx + dy*dy
-            if dist > max_dist:
-                max_dist = dist
-      
+def cross(o, a, b):
+    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+def convex_hull(points):
+    points = sorted(points)
+    if len(points) <= 1:
+        return points
+    lower = []
+    for p in points:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+    upper = []
+    for p in reversed(points):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+            upper.pop
