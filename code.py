@@ -1,18 +1,18 @@
-def maxUniqueSplit(s: str) -> int:
-    max_count = 0
-    n = len(s)
-    
-    def backtrack(start, used):
-        nonlocal max_count
-        if start == n:
-            current = len(used)
-            if current > max_count:
-                max_count = current
-            return
-        for end in range(start + 1, n + 1):
-            substr = s[start:end]
-            if substr not in used:
-                used.add(substr)
-                backtrack(end, used)
-                used.remove(substr)
-   
+def minNumberOfFrogs(croakOfFrogs):
+    counts = {'c': 0, 'r': 0, 'o': 0, 'a': 0}
+    max_frogs = 0
+    for char in croakOfFrogs:
+        if char == 'c':
+            counts['c'] += 1
+        elif char == 'r':
+            if counts['c'] == 0:
+                return -1
+            counts['c'] -= 1
+            counts['r'] += 1
+        elif char == 'o':
+            if counts['r'] == 0:
+                return -1
+            counts['r'] -= 1
+            counts['o'] += 1
+        elif char == 'a':
+     
