@@ -1,16 +1,13 @@
-import bisect
-
 n, m = map(int, input().split())
-
-prefix = [0]
-for _ in range(n):
-    p, _ = map(int, input().split())
-    prefix.append(prefix[-1] + p)
-
-queries = list(map(int, input().split()))
-for x in queries:
-    pos = bisect.bisect_left(prefix, x)
-    if pos >= len(prefix):
-        print(n)
-    else:
-        print(pos)
+s = list(input())
+for _ in range(m):
+    p, c = input().split()
+    p = int(p) - 1  # Convert to 0-based index
+    s[p] = c
+modified = ''.join(s)
+vowels = {'a', 'e', 'i', 'o', 'u'}
+for v in vowels:
+    if v not in modified:
+        print(-1)
+        exit()
+print(modified)
