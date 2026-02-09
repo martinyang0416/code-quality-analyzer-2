@@ -1,18 +1,22 @@
+import sys
+
 def main():
-    import sys
     input = sys.stdin.read().split()
     T = int(input[0])
     idx = 1
     for _ in range(T):
-        N = int(input[idx])
+        n = int(input[idx])
         k = int(input[idx+1])
         idx +=2
-        x = k +1
-        count =0
-        while x % 2 ==0:
-            count +=1
-            x = x //2
-        print("ON" if count >= N else "OFF")
+        if k == 2 or n == k or k == 4:
+            print(-1)
+        else:
+            m = k -2
+            if n % m != 0:
+                print(-1)
+            else:
+                block = '('*(m//2) + ')'*(m//2)
+                print(block * (n//m))
 
 if __name__ == "__main__":
     main()
