@@ -1,15 +1,15 @@
-def findKthBit(n: int, k: int) -> str:
-    def helper(n: int, k: int) -> int:
-        if n == 1:
-            return 0
-        L = (1 << (n - 1)) - 1
-        if k == L + 1:
-            return 1
-        elif k <= L:
-            return helper(n - 1, k)
-        else:
-            j = k - (L + 1)
-            original_pos = L - j + 1
-            return 1 - helper(n - 1, original_pos)
+def mctFromLeafValues(arr):
+    n = len(arr)
+    max_table = [[0] * n for _ in range(n)]
+    for i in range(n):
+        max_table[i][i] = arr[i]
+        for j in range(i + 1, n):
+            max_table[i][j] = max(max_table[i][j - 1], arr[j])
     
-    return str(helper(n, k))
+    dp = [[0] * n for _ in range(n)]
+    for l in range(2, n + 1):
+        for i in range(n - l + 1):
+            j = i + l - 1
+            dp[i][j] = float('inf')
+            for k in range(i, j):
+                dp[i][j] = min(dp[i][j], dp[i][k] + dp[
