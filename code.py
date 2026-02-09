@@ -1,13 +1,9 @@
-import math
-
-def mirrorReflection(p, q):
-    if q == 0:
+def minDifference(nums):
+    nums.sort()
+    n = len(nums)
+    if n <= 4:
         return 0
-    m = (p * q) // math.gcd(p, q)
-    a, b = m // p, m // q
-    if a % 2 == 0 and b % 2 == 1:
-        return 0
-    elif a % 2 == 1 and b % 2 == 1:
-        return 1
-    else:
-        return 2
+    return min(nums[-4] - nums[0],
+               nums[-3] - nums[1],
+               nums[-2] - nums[2],
+               nums[-1] - nums[3])
