@@ -1,21 +1,22 @@
-import sys
-
 def main():
-    sys.setrecursionlimit(1 << 25)
-    N, Q = map(int, sys.stdin.readline().split())
-    S = sys.stdin.readline().strip()
-    special = sys.stdin.readline().strip()
-    queries = [tuple(map(int, sys.stdin.readline().split())) for _ in range(Q)]
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    t = input[idx]
+    idx += 1
+    U = int(input[idx])
+    idx += 1
+    updates = []
+    for _ in range(U):
+        p = int(input[idx]) - 1  # converting to 0-based
+        c = input[idx+1]
+        updates.append((p, c))
+        idx += 2
 
-    # Parse L and R positions correctly
-    L = []
-    R = []
-    for i in range(2 * N):
-        if S[i] == 'L':
-            L.append(i + 1)
-        else:
-            R.append(i + 1)
-    L = L[:N]
-    R = R[:N]
-
-    # Precompute p
+    def compute_A(s):
+        n = len(s)
+        # Precompute prefix arrays for b, e, s, i
+        prefix_b = [0]*(n+1)
+        prefix_e = [0]*(n+1)
+        prefix_s = [0]*(n+1)
+      
