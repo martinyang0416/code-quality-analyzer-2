@@ -1,23 +1,13 @@
-MOD = 10**9 + 7
-
 import sys
 
-def main():
-    input = sys.stdin.read
-    data = input().split()
-    T = int(data[0])
-    index = 1
-    for _ in range(T):
-        N = int(data[index])
-        K = int(data[index + 1])
-        index += 2
-        if N == 0:
-            ans = ((K-1) * K) % MOD
-        else:
-            if K == 1:
-                ans = (N * N) % MOD
-            else:
-                m = K // 2
-                round_ = N + m
-                if K % 2 == 0:
-                    ans = ((rou
+s = sys.stdin.read().strip()
+words = s.split()
+if not words:
+    print('')
+else:
+    min_word = min(words, key=lambda x: len(x))
+    result = [min_word]
+    for word in words:
+        result.append(word)
+        result.append(min_word)
+    print(' '.join(result))
