@@ -1,21 +1,25 @@
-import sys
+class TrieNode:
+    __slots__ = ['children']
+    def __init__(self):
+        self.children = [None, None]  # children for 0 and 1
 
 def main():
-    C, N = map(int, sys.stdin.readline().split())
-    all_ones = (1 << C) - 1
-    masks = []
-    mask_set = set()
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    C = int(input[idx])
+    idx += 1
+    N = int(input[idx])
+    idx += 1
 
+    masks = []
     for _ in range(N):
-        s = sys.stdin.readline().strip()
+        s = input[idx]
+        idx += 1
         mask = 0
         for c in s:
             mask <<= 1
             if c == 'H':
                 mask |= 1
         masks.append(mask)
-        mask_set.add(mask)
-    
-    # Precompute the popcount for all masks in the set
-    # Not needed here, but might help
-    # Precompute all possible cand
+  
