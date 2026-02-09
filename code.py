@@ -1,3 +1,6 @@
-Okay, I need to solve this programming problem where the input is an integer a between 0 and 35, and I have to output another integer. Let's see the examples they gave. When the input was 3, the output was 8. Hmm, 2^3 is 8. Oh right! Wait, maybe the problem is to compute 2 raised to the power of a? But let me check the other example. Input 10 gives 1024. Oh yeah, 2^10 is 1024. So that's exactly it. So the task is simply to compute 2^a.
-
-Wait, but why the constraints up to 35? Let me think. Oh ri
+a = int(input())
+result = 1
+for i in range(6):
+    if a & (1 << i):
+        result *= (i + 1)
+print(result)
