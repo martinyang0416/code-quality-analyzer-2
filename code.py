@@ -1,24 +1,19 @@
-def main():
-    import sys
-    s = sys.stdin.read().strip()
+import sys
+from collections import deque
 
-    target = list("bessie")
-    m = len(target)
+def main():
+    s = sys.stdin.read().strip()
+    target = 'bessie'
     n = len(s)
-    dp = [0] * (m + 1)
-    dp[0] = 1
-    cnt_6 = []
-    for c in s:
-        new_dp = dp.copy()
-        for j in range(m-1, -1, -1):
-            if c == target[j]:
-                new_dp[j+1] += dp[j]
-        dp = new_dp
-        cnt_6.append(dp[m])
-    
-    first_total = 0
-    for i in range(n):
-        first_total += (i + 1) * cnt_6[i]
-    
-    S = [0] * n
-    for i in rang
+    pos = [deque() for _ in range(6)]
+    total = 0
+    for j, c in enumerate(s):
+        for i in range(5, -1, -1):
+            if c == target[i]:
+                if i == 0:
+                    pos[0].append(j)
+                else:
+                    if pos[i-1]:
+                        prev_pos = pos[i-1].popleft()
+                        pos[i].append(prev_pos)
+       
