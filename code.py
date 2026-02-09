@@ -1,25 +1,17 @@
-import heapq
+import sys
+from collections import defaultdict, deque
 
 def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    n = int(data[idx])
-    w = int(data[idx+1])
-    k = int(data[idx+2])
-    idx +=3
-    a = list(map(int, data[idx:idx+n]))
-    idx +=n
-    t = list(map(int, data[idx:idx+n]))
-    saved = []
-    for ti in t:
-        saved_i = ti - (ti +1)//2
-        saved.append(saved_i)
-    
-    max_pleasure = 0
-    
-    for x in range(n):
-        current_sum_t = 0
-        current_sum_a = 0
-        heap =
+    n = int(sys.stdin.readline())
+    strings = [sys.stdin.readline().strip() for _ in range(n)]
+    unique_strings = list(set(strings))
+    if len(unique_strings) != n:
+        print("NO")
+        return
+
+    # Check if all are single character
+    all_single = all(len(s) == 1 for s in unique_strings)
+    if all_single:
+        chars = [s[0] for s in unique_strings]
+        if len(chars) != len(set(chars)):
+            print("NO
