@@ -1,27 +1,20 @@
-n = int(input())
+import sys
+from collections import deque
 
-def left_rotate_1(s):
-    if len(s) <= 1:
-        return s
-    return s[1:] + s[0]
+def main():
+    input = sys.stdin.read().split()
+    ptr = 0
+    N = int(input[ptr]); ptr +=1
+    X = int(input[ptr]); ptr +=1
+    Y = int(input[ptr]); ptr +=1
 
-def right_rotate_1(s):
-    if len(s) <= 1:
-        return s
-    return s[-1] + s[:-1]
-
-def swap_halves(s):
-    n = len(s)
-    if n % 2 == 0:
-        mid = n // 2
-        return s[mid:] + s[:mid]
-    else:
-        mid = n // 2
-        return s[mid+1:] + s[mid] + s[:mid]
-
-def decrement_digits(s):
-    res = []
-    for c in s:
-        if c.isdigit():
-            res.append(str((int(c) - 1) % 10))
-  
+    towns = []
+    for _ in range(N):
+        K = int(input[ptr]); ptr +=1
+        sweets = []
+        for __ in range(K):
+            a = int(input[ptr]); ptr +=1
+            b = int(input[ptr]); ptr +=1
+            c = int(input[ptr]); ptr +=1
+            sweets.append( (a, b, c) )
+        town
