@@ -1,22 +1,22 @@
 import sys
 
-class FenwickTree:
-    def __init__(self, size):
-        self.n = size
-        self.tree = [0] * (self.n + 2)  # 1-based indexing
-
-    def update(self, idx, delta):
-        # idx is the value (1-based)
-        while idx <= self.n:
-            self.tree[idx] += delta
-            idx += idx & -idx
-
-    def query(self, idx):
-        # Sum from 1 to idx (inclusive)
-        res = 0
-        while idx > 0:
-            res += self.tree[idx]
-            idx -= idx & -idx
-        return res
-
-d
+def main():
+    input = sys.stdin.read().split()
+    idx = 0
+    t = int(input[idx])
+    idx += 1
+    for _ in range(t):
+        n = int(input[idx])
+        idx += 1
+        a = list(map(int, input[idx:idx+n]))
+        idx += n
+        
+        fixed_max = 0
+        for i in range(n-1):
+            if a[i] != -1 and a[i+1] != -1:
+                current = abs(a[i] - a[i+1])
+                if current > fixed_max:
+                    fixed_max = current
+        
+        edges = []
+   
