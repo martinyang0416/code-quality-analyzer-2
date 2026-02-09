@@ -1,18 +1,24 @@
 import math
 
-def cross(o, a, b):
-    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
-
-def convex_hull(points):
-    points = sorted(points)
-    if len(points) <= 1:
-        return points
-    lower = []
-    for p in points:
-        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
-            lower.pop()
-        lower.append(p)
-    upper = []
-    for p in reversed(points):
-        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
-            upper.pop
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    n = int(input[idx])
+    idx += 1
+    angles = []
+    for _ in range(n):
+        x = float(input[idx])
+        y = float(input[idx + 1])
+        idx += 2
+        rad = math.atan2(y, x)
+        deg = math.degrees(rad)
+        if deg < 0:
+            deg += 360.0
+        angles.append(deg)
+    
+    angles.sort()
+    max_gap = 0.0
+    for i in range(n - 1):
+        gap = angles[i + 1] - angles[i]
+        if 
