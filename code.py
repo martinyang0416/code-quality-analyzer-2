@@ -1,24 +1,17 @@
-tokens = input().split()
-n = int(tokens[-1])
-lhs_tokens = tokens[:-2]
+t, m = map(int, input().split())
+allocated_blocks = []
+next_id = 1
 
-coeff = [1]
-for i in range(1, len(lhs_tokens), 2):
-    op = lhs_tokens[i]
-    coeff.append(1 if op == '+' else -1)
-
-total_coeff = sum(coeff)
-T = n - total_coeff
-
-P = [i for i, c in enumerate(coeff) if c == 1]
-N = [i for i, c in enumerate(coeff) if c == -1]
-
-possible = False
-if T == 0:
-    possible = True
-elif T > 0:
-    if P and T <= len(P) * (n - 1):
-        possible = True
-else:
-    required = -T
-    if N and required <= le
+for _ in range(t):
+    parts = input().split()
+    if parts[0] == 'alloc':
+        n = int(parts[1])
+        gaps = []
+        prev_end = -1
+        for block in allocated_blocks:
+            current_start = block['start']
+            if current_start > prev_end + 1:
+                gaps.append((prev_end + 1, current_start - 1))
+            prev_end = block['start'] + block['size'] - 1
+        if prev_end < m - 1:
+            ga
