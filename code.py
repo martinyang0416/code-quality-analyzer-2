@@ -1,21 +1,18 @@
-import sys
+s = input().strip()
+a, b, c = map(int, s.split())
 
-def main():
-    n, m = map(int, sys.stdin.readline().split())
-    a = list(map(int, sys.stdin.readline().split()))
-    
-    xor_a = 0
-    for num in a:
-        xor_a ^= num
-    
-    xor_mod = 0
-    for k in range(2, m + 1):
-        q, r = divmod(n, k)
-        sum_mod_k = q * (k - 1) * k // 2 + (r * (r + 1)) // 2
-        xor_mod ^= sum_mod_k
-    
-    R = xor_a ^ xor_mod
-    print(R)
-
-if __name__ == "__main__":
-    main()
+# Check for arithmetic sequence
+diff1 = b - a
+diff2 = c - b
+if diff1 == diff2:
+    print("Arithmetic Sequence")
+else:
+    # Check for geometric sequence
+    if a == 0:
+        # If a is 0, geometric is only possible if all terms are 0, which would have passed arithmetic check
+        print("Neither")
+    else:
+        if b * b == a * c:
+            print("Geometric Sequence")
+        else:
+            print("Neither")
