@@ -1,23 +1,24 @@
 def main():
     import sys
-    t = sys.stdin.read().strip()
-    n = len(t)
-    if n == 0:
-        print(0)
-        return
+    s = sys.stdin.read().strip()
 
-    # Precompute prefix sums for b, e, s, i
-    pre_b = [0] * (n + 1)
-    pre_e = [0] * (n + 1)
-    pre_s = [0] * (n + 1)
-    pre_i = [0] * (n + 1)
-
+    target = list("bessie")
+    m = len(target)
+    n = len(s)
+    dp = [0] * (m + 1)
+    dp[0] = 1
+    cnt_6 = []
+    for c in s:
+        new_dp = dp.copy()
+        for j in range(m-1, -1, -1):
+            if c == target[j]:
+                new_dp[j+1] += dp[j]
+        dp = new_dp
+        cnt_6.append(dp[m])
+    
+    first_total = 0
     for i in range(n):
-        pre_b[i+1] = pre_b[i]
-        pre_e[i+1] = pre_e[i]
-        pre_s[i+1] = pre_s[i]
-        pre_i[i+1] = pre_i[i]
-        c = t[i]
-        if c == 'b':
-            pre_b[i+1] += 1
-        elif c == '
+        first_total += (i + 1) * cnt_6[i]
+    
+    S = [0] * n
+    for i in rang
