@@ -1,19 +1,10 @@
-n = int(input())
-
-def generate_patterns(n):
-    patterns = []
-    def backtrack(current, max_num):
-        if len(current) == n:
-            patterns.append(current.copy())
-            return
-        for next_num in range(max_num + 2):
-            backtrack(current + [next_num], max(max_num, next_num))
-    if n == 0:
-        return []
-    backtrack([0], 0)
-    return patterns
-
-patterns = generate_patterns(n)
-strings = [''.join(chr(ord('a') + num) for num in p) for p in patterns]
-strings.sort()
-
+a, b, c = map(int, input().split())
+total = a + b + c
+if total % 2 != 0:
+    print("No")
+else:
+    half = total // 2
+    if (a == half or b == half or c == half) or (a + b == half) or (a + c == half) or (b + c == half):
+        print("Yes")
+    else:
+        print("No")
