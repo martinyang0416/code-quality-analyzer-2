@@ -1,20 +1,21 @@
-# Read the number of test cases
-T = int(input())
-for _ in range(T):
-    # Read Ram's truth tasks
-    tr = int(input())
-    Tr = list(map(int, input().split()))
-    tr_set = set(Tr)
-    
-    # Read Ram's dare tasks
-    dr = int(input())
-    Dr = list(map(int, input().split()))
-    dr_set = set(Dr)
-    
-    # Read Shyam's truth tasks
-    ts = int(input())
-    Ts = list(map(int, input().split())) if ts > 0 else []
-    
-    # Read Shyam's dare tasks
-    ds = int(input())
-    Ds = list(map(int, input
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    T = int(input[0])
+    idx = 1
+    for _ in range(T):
+        A = int(input[idx])
+        B = int(input[idx+1])
+        idx +=2
+        
+        len_A = len(bin(A)) - 2 if A !=0 else 1
+        len_B = len(bin(B)) - 2 if B !=0 else 1
+        n = max(len_A, len_B)
+        
+        a_bin = format(A, '0{}b'.format(n))
+        b_bin = format(B, '0{}b'.format(n))
+        
+        max_xor = -1
+        best_shift = 0
+        
+        for
