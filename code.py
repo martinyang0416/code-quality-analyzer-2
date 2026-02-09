@@ -1,16 +1,24 @@
-n, m = map(int, input().split())
-t = min(n, m)
-# Initialize grid with 1-based indices
-grid = [[0] * (m + 1) for _ in range(n + 1)]
-for i in range(1, n + 1):
-    row = list(map(int, input().split()))
-    for j in range(1, m + 1):
-        grid[i][j] = row[j - 1]
+n, m, k, h = map(int, input().split())
+s = [int(input()) for _ in range(n)]
+swaps = []
+for _ in range(m):
+    a, b = map(int, input().split())
+    swaps.append(a)
 
-# Initialize prefix sum array
-prefix = [[0] * (m + 1) for _ in range(n + 1)]
+# Compute the permutation T after applying all swaps
+T = list(range(n))
+for a in swaps:
+    i = a - 1
+    if i >= 0 and i + 1 < n:
+        T[i], T[i+1] = T[i+1], T[i]
 
-for i in range(1, n + 1):
-    for j in range(1, m + 1):
-        distance = (i + j - 2) * grid[i][j]
-        prefix[i][j] = distance + prefix[i-1][j] + prefix[i]
+# Compute sum_base
+sum_base = sum(s[T[x]] for x in range(k))
+
+min_sum = sum_base
+
+for j in range(m):
+    a = swaps[j]
+    i = a - 1
+    if i < 0 or i + 1 >= n:
+        
