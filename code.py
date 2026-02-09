@@ -1,10 +1,6 @@
 n, m = map(int, input().split())
-
-factorial = 1
-for i in range(1, m + 1):
-    factorial *= i
-
-if factorial % n == 0:
+m_squared = m * m
+if n < m_squared and n != m_squared - 1:
     print("YES")
 else:
     print("NO")
