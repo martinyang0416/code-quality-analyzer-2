@@ -1,24 +1,19 @@
-class BIT():
-    def __init__(self,n):
-        self.BIT=[0]*(n+1)
-        self.num=n
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-    def query(self,idx):
-        res_sum = 0
-        while idx > 0:
-            res_sum += self.BIT[idx]
-            idx -= idx&(-idx)
-        return res_sum
-
-    #Ai += x O(logN)
-    def update(self,idx,x):
-        while idx <= self.num:
-            self.BIT[idx] += x
-            idx += idx&(-idx)
-        return
-
-n,m = map(int,input().split())
-a = list(map(int,input().split()))
-
-def solve(x):
-    tmp = [0 for 
+import builtins
+import re
