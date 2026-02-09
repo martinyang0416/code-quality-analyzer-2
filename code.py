@@ -1,23 +1,21 @@
-from decimal import Decimal, getcontext
+import sys
 
-getcontext().prec = 20
-
-T = int(input())
-for _ in range(T):
-    m = int(input().strip())
-    percentages = input().strip().split()
-    
-    m_dec = Decimal(str(m))
-    current = m_dec
-    for p_str in percentages:
-        p = Decimal(p_str)
-        current *= (Decimal('1') + p / Decimal('100'))
-    
-    profit_percent = ((current - m_dec) / m_dec) * Decimal('100')
-    
-    if profit_percent >= 0:
-        sign = '+'
-    else:
-        sign = '-'
-    
-    ab
+def main():
+    data = list(map(int, sys.stdin.read().split()))
+    ptr = 0
+    T = data[ptr]
+    ptr += 1
+    for _ in range(T):
+        N = data[ptr]
+        Q = data[ptr + 1]
+        ptr += 2
+        a = data[ptr:ptr + N]
+        ptr += N
+        # Compute prefix sums
+        prefix = [0] * (N + 1)
+        for i in range(1, N + 1):
+            prefix[i] = prefix[i - 1] + a[i - 1]
+        # Process queries
+        for __ in range(Q):
+            X = data[ptr]
+            Y = data[p
