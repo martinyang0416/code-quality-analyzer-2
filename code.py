@@ -1,25 +1,21 @@
-import bisect
+import sys
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    N = int(input[ptr])
-    ptr += 1
-    Q = int(input[ptr])
-    ptr += 1
+    sys.setrecursionlimit(1 << 25)
+    N, Q = map(int, sys.stdin.readline().split())
+    S = sys.stdin.readline().strip()
+    special = sys.stdin.readline().strip()
+    queries = [tuple(map(int, sys.stdin.readline().split())) for _ in range(Q)]
 
-    s = input[ptr]
-    ptr += 1
-    spec_str = input[ptr]
-    ptr += 1
+    # Parse L and R positions correctly
+    L = []
+    R = []
+    for i in range(2 * N):
+        if S[i] == 'L':
+            L.append(i + 1)
+        else:
+            R.append(i + 1)
+    L = L[:N]
+    R = R[:N]
 
-    # Parse left and right endpoints
-    lefts = []
-    rights = []
-    for i in range(len(s)):
-        c = s[i]
-        if len(lefts) < N and c == 'L':
-            lefts.append(i + 1)  # positions are 1-based
-        elif len(rights) < N and c == 'R':
-         
+    # Precompute p
