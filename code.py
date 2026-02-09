@@ -1,17 +1,21 @@
-from collections import deque
-
-class Solution:
-    def regionsBySlashes(self, grid):
-        n = len(grid)
-        size = 3 * n
-        expanded = [[0] * size for _ in range(size)]
-        
-        for i in range(n):
-            for j in range(n):
-                c = grid[i][j]
-                if c == '/':
-                    for x in range(3):
-                        for y in range(3):
-                            if x + y == 2:
-                                expanded[3*i + x][3*j + y] = 1
+def maxProfit(prices):
+    if not prices:
+        return 0
+    n = len(prices)
+    left = [0] * n
+    min_price = prices[0]
     
+    for i in range(1, n):
+        min_price = min(min_price, prices[i])
+        left[i] = max(left[i-1], prices[i] - min_price)
+    
+    right = [0] * n
+    max_price = prices[-1]
+    
+    for i in range(n-2, -1, -1):
+        max_price = max(max_price, prices[i])
+        right[i] = max(right[i+1], max_price - prices[i])
+    
+    max_profit = 0
+    for i in range(n):
+  
