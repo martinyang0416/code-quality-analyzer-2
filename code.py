@@ -1,19 +1,25 @@
-n, m = map(int, input().split())
-grid = [input().strip() for _ in range(n)]
+import sys
 
-rows = []
-row_indices = [dict() for _ in range(n)]
-for i in range(n):
-    current_row = []
-    for j in range(m):
-        if grid[i][j] != '.':
-            current_row.append((i, j))
-    current_row.sort(key=lambda x: x[1])
-    rows.append(current_row)
-    for idx, (x, y) in enumerate(current_row):
-        row_indices[x][y] = idx
+MAX_VALUE_STR = '1000000000000'
 
-cols = []
-col_indices = [dict() for _ in range(m)]
-for j in range(m):
-    current_col = []
+def is_valid_part(s_part):
+    if len(s_part) == 0:
+        return False
+    if len(s_part) > 13:
+        return False
+    if len(s_part) > 1 and s_part[0] == '0':
+        return False
+    if len(s_part) == 13:
+        return s_part == MAX_VALUE_STR
+    return True
+
+def part_to_num(s_part):
+    if len(s_part) == 13:
+        return 10**12
+    return int(s_part)
+
+def process_string(s):
+    L = len(s)
+    if L < 4:
+        return "unlucky"
+    max_sum = 
