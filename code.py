@@ -1,14 +1,27 @@
-import math
-
-n, p = map(int, input().split())
-
-t = (p // 2) + 1
-
-s = 0.0
-for k in range(t, p + 1):
-    s += math.comb(p, k) * (0.5 ** p)
-
-prob = 1.0 - (1.0 - s) ** n
-
-# Format the output to 8 decimal places
-print("{0:.8f}".format(prob))
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    M = int(input[idx])
+    idx += 1
+    L = int(input[idx])
+    idx += 1
+    
+    intervals = []
+    for _ in range(L):
+        p = int(input[idx])
+        idx +=1
+        q = int(input[idx])
+        idx +=1
+        if p > q:
+            p, q = q, p
+        intervals.append((p, q-1))
+    
+    if not intervals:
+        print(1)
+        return
+    
+    intervals.sort(key=lambda x: x[1])
+    
+    splits = []
+    current_en
