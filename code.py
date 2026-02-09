@@ -1,24 +1,17 @@
-import numpy as np
+import sys
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx]); idx +=1
-    K = int(input[idx]); idx +=1
-    T = int(input[idx]); idx +=1
-    A = list(map(int, input[idx:idx+K]))
-    idx += K
-
-    # Compute contrib array
-    contrib = [0] * N
-    for r in range(N):
-        if r == 0:
-            contrib[r] = T // N
-        else:
-            contrib[r] = (T - r + N) // N
-
-    # Compute B_j for each j in A
-    B = [(1 - a) % N for a in A]
-
- 
+    N, K, T = map(int, sys.stdin.readline().split())
+    A = list(map(int, sys.stdin.readline().split()))
+    # Compute deltas for each position
+    deltas = []
+    for j in range(K):
+        next_j = (j + 1) % K
+        delta = (A[next_j] - A[j]) % N
+        deltas.append(delta)
+    
+    # For each residue r mod N, compute the displacement_contribution[r]
+    displacement_contribution = [0] * N
+    for j in range(K):
+        c_j = A[j] % N  # c_j = A_j mod N
+        delt
