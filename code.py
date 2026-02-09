@@ -1,20 +1,21 @@
-import sys
-from collections import deque
+import math
 
-def main():
-    n, m = map(int, sys.stdin.readline().split())
-    dangerous = set()
-    if m > 0:
-        dangerous.update(map(int, sys.stdin.readline().split()))
-    else:
-        sys.stdin.readline()  # consume the line
-
-    # Build adjacency list
-    adj = [[] for _ in range(n + 1)]
-    for _ in range(n - 1):
-        u, v = map(int, sys.stdin.readline().split())
-        adj[u].append(v)
-        adj[v].append(u)
-
-    visited = [False] * (n + 1)
-    tot
+def max_sum_after_flips(t, test_cases):
+    results = []
+    for case in test_cases:
+        n, m, a, B = case
+        sum_initial = sum(a)
+        sum_abs = sum(abs(num) for num in a)
+        B = set(B)
+        
+        if 1 in B:
+            results.append(sum_abs)
+            continue
+        
+        has_odd = any(x % 2 != 0 for x in B)
+        if has_odd:
+            results.append(sum_abs)
+            continue
+        
+        negatives = [num for num in a if num < 0]
+        
