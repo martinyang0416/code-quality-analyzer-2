@@ -1,19 +1,18 @@
-import math
-import sys
+n = int(input())
+booked = []
 
-def main():
-    n, c, d = map(int, sys.stdin.readline().split())
-    points = []
-    for _ in range(n):
-        r, w = map(int, sys.stdin.readline().split())
-        a = r - c
-        b = w - d
-        points.append((a, b))
-    
-    # Compute angles and handle edge cases
-    thetas = []
-    for a, b in points:
-        if a == 0 and b == 0:
-            continue  # But problem states |ri'| + |wi'| >0, so this cannot happen
-        theta = math.atan2(b, a)
-        thetas.app
+for _ in range(n):
+    s, d = map(int, input().split())
+    preferred_start = s
+    preferred_end = s + d - 1
+    available = True
+    for a, b in booked:
+        if not (preferred_end < a or preferred_start > b):
+            available = False
+            break
+    if available:
+        new_interval = (preferred_start, preferred_end)
+        inserted = False
+        for j in range(len(booked)):
+            if booked[j][0] > new_interval[0]:
+                booked.in
