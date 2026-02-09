@@ -1,24 +1,19 @@
-MOD = 10**9 + 7
-m_max = 200000
+def main():
+    import sys
+    input = sys.stdin.read().splitlines()
+    n, r, c = map(int, input[0].split())
+    words = input[1].split()
+    if not words:
+        print()
+        return
 
-# Precompute the DP table
-dp = [[0] * (m_max + 1) for _ in range(10)]
-for d in range(10):
-    dp[d][0] = 1  # Base case: 0 operations
+    # Precompute prefix sums and s array
+    prefix_sum = [0] * (n + 1)
+    for i in range(n):
+        prefix_sum[i + 1] = prefix_sum[i] + len(words[i])
+    s = [prefix_sum[i] + i for i in range(n + 1)]
 
-for k in range(1, m_max + 1):
-    for d in range(10):
-        if d + 1 < 10:
-            dp[d][k] = dp[d+1][k-1] % MOD
-        else:
-            dp[d][k] = (dp[0][k-1] + dp[1][k-1]) % MOD
-
-import sys
-input = sys.stdin.read().split()
-t = int(input[0])
-index = 1
-
-for _ in range(t):
-    n = input[index]
-    m = int(input[index + 1])
- 
+    # Compute next_line_start
+    next_line_start = [0] * n
+    for l in range(n):
+        target = s[l] + 
