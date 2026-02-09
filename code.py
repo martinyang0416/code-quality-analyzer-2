@@ -1,26 +1,16 @@
-n = int(input())
-a = list(map(int, input().split()))
-b = list(map(int, input().split()))
-
-count_a = [0] * 6  # Using indices 1 to 5
-count_b = [0] * 6
-
-for num in a:
-    count_a[num] += 1
-for num in b:
-    count_b[num] += 1
-
-possible = True
-for i in range(1, 6):
-    if (count_a[i] + count_b[i]) % 2 != 0:
-        possible = False
-        break
-
-if not possible:
-    print(-1)
-else:
-    total_abs = 0
-    for i in range(1, 6):
-        total = count_a[i] + count_b[i]
-        target = total // 2
-      
+def search(nums, target):
+    left, right = 0, len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] == target:
+            return True
+        if nums[left] < nums[mid]:
+            if nums[left] <= target < nums[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        elif nums[left] > nums[mid]:
+            if nums[mid] < target <= nums[right]:
+                left = mid + 1
+            else:
+                right =
