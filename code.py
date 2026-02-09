@@ -1,19 +1,19 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    T = int(input[0])
-    index = 1
-    for _ in range(T):
-        s = input[index]
-        index += 1
-        balance = 0
-        count_balances = {0: 1}
-        total = 0
-        for c in s:
-            if c == 'A':
-                balance += 1
-            else:
-                balance -= 1
-            # Get the current balance's count and add to total
-            total += count_balances.get(balance, 0)
-            # Update the co
+def reverse_consonants(S):
+    vowels = {'a', 'e', 'i', 'o', 'u'}
+    s_list = list(S)
+    consonants = []
+    
+    # Collect all consonants
+    for char in s_list:
+        if char not in vowels:
+            consonants.append(char)
+    
+    # Reverse the consonants list
+    consonants.reverse()
+    
+    # Replace consonants in the original string with the reversed ones
+    ptr = 0
+    for i in range(len(s_list)):
+        if s_list[i] not in vowels:
+            s_list[i] = consonants[ptr]
+       
