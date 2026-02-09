@@ -1,20 +1,19 @@
-def largestNumber(cost, target):
-    dp = [-float('inf')] * (target + 1)
-    dp[0] = 0
-    for i in range(1, target + 1):
-        for j in range(9):
-            c = cost[j]
-            if i >= c and dp[i - c] + 1 > dp[i]:
-                dp[i] = dp[i - c] + 1
-    if dp[target] <= 0:
-        return "0"
+def countNumbers(digits, n):
+    s = str(n)
+    k = len(s)
+    sum_less = sum(len(digits) ** m for m in range(1, k))
+    digits_sorted = sorted(digits)
     
-    res = []
-    sum_remain = target
-    digits_remain = dp[target]
+    from functools import lru_cache
     
-    while digits_remain > 0:
-        for d in range(8, -1, -1):
-            digit = d + 1
-            c = cost[d]
-     
+    @lru_cache(maxsize=None)
+    def dp(pos, tight):
+        if pos == k:
+            return 1
+        limit = s[pos] if tight else '9'
+        count = 0
+        for d in digits_sorted:
+            if d > limit:
+                continue
+            new_tight = tight and (d == limit)
+            if new
