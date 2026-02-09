@@ -1,22 +1,21 @@
-n, r, s = map(int, input().split())
-books = list(map(int, input().split()))
-books.sort()
+import sys
 
-count = 0
+def decode_caesar(line):
+    result = []
+    n = 0
+    for c in line:
+        if c.isalpha():
+            encrypted_pos = ord(c) - ord('a')
+            shift = (n + 1) % 26
+            original_pos = (encrypted_pos - shift) % 26
+            result.append(chr(original_pos + ord('a')))
+        else:
+            result.append(c)
+        n += 1
+    return ''.join(result)
 
-for b in books:
-    if r < 0 or s < 0:
-        continue
-    initial_a = min(r, b // 3)
-    rem = b - initial_a * 3
-    if rem <= s:
-        count += 1
-        r -= initial_a
-        s -= rem
-    else:
-        numerator = b - s + 2
-        required_a_min = numerator // 3
-        required_a_min = max(required_a_min, 0)
-        available_a = min(r, b // 3)
-        if available_a >= required_a_min:
- 
+def main():
+    for line in sys.stdin:
+        line = line.rstrip('\n')
+        decoded_line = decode_caesar(line)
+  
