@@ -1,18 +1,14 @@
-class Solution:
-    def divide(self, dividend: int, divisor: int) -> int:
-        if dividend == 0:
-            return 0
-        
-        MAX_INT = 2**31 - 1
-        MIN_INT = -2**31
-        
-        if dividend == MIN_INT and divisor == -1:
-            return MAX_INT
-        
-        negative = (dividend < 0) ^ (divisor < 0)
-        abs_dividend = abs(dividend)
-        abs_divisor = abs(divisor)
-        quotient = 0
-        
-        while abs_dividend >= abs_divisor:
-            temp = abs_divi
+MOD = 10**9 + 7
+
+def distinctSubseqCount(s: str) -> int:
+    n = len(s)
+    dp = [0] * (n + 1)
+    dp[0] = 1
+    last_occurrence = {}
+    for i in range(1, n + 1):
+        c = s[i-1]
+        dp[i] = (2 * dp[i-1]) % MOD
+        if c in last_occurrence:
+            dp[i] = (dp[i] - dp[last_occurrence[c] - 1]) % MOD
+        last_occurrence[c] = i
+    return (dp[n] - 1) % MOD
