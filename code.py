@@ -1,4 +1,3 @@
-a = int(input())
 presidents = [
     "Washington", "Adams", "Jefferson", "Madison", "Monroe", "Adams", "Jackson",
     "Van Buren", "Harrison", "Tyler", "Polk", "Taylor", "Fillmore", "Pierce",
@@ -7,4 +6,5 @@ presidents = [
     "Harding", "Coolidge", "Hoover", "Roosevelt", "Truman", "Eisenhower", "Kennedy",
     "Johnson", "Nixon", "Ford", "Carter", "Reagan"
 ]
+a = int(input())
 print(pr
