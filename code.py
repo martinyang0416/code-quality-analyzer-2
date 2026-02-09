@@ -1,19 +1,21 @@
 import sys
 
-class DSU:
-    def __init__(self, size):
-        self.parent = list(range(size+1))
-        self.rank = [0]*(size+1)
+def main():
+    n = int(sys.stdin.readline())
+    dp = [[-float('inf')] * 26 for _ in range(26)]
     
-    def find(self, x):
-        if self.parent[x] != x:
-            self.parent[x] = self.find(self.parent[x])
-        return self.parent[x]
-    
-    def union(self, x, y):
-        x_root = self.find(x)
-        y_root = self.find(y)
-        if x_root == y_root:
-            return False
-        if self.rank[x_root] < self.rank[y_root]:
-            self.parent[x_root]
+    for _ in range(n):
+        name = sys.stdin.readline().strip()
+        if not name:
+            continue  # handle empty lines if any
+        s = ord(name[0]) - ord('a')
+        e = ord(name[-1]) - ord('a')
+        l = len(name)
+        
+        new_trans = {}
+        
+        # Standalone case
+        key = (s, e)
+        if key in new_trans:
+            if l > new_trans[key]:
+ 
