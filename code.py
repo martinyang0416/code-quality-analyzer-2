@@ -1,19 +1,25 @@
-def compute_lps(pattern):
-    lps = [0] * len(pattern)
-    length = 0  # length of the previous longest prefix suffix
-    i = 1
-    while i < len(pattern):
-        if pattern[i] == pattern[length]:
-            length += 1
-            lps[i] = length
-            i += 1
-        else:
-            if length != 0:
-                length = lps[length - 1]
-            else:
-                lps[i] = 0
-                i += 1
-    return lps
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    K = int(input[idx])
+    idx += 1
+    D = int(input[idx])
+    idx += 1
 
-def count_occurrences(text, pattern, lps):
-    count = [0] * (le
+    times = []
+    for _ in range(N):
+        time_str = input[idx]
+        idx += 1
+        hh, mm, ss = map(int, time_str.split(':'))
+        t = hh * 3600 + mm * 60 + ss
+        times.append(t)
+
+    events = []
+    for t in times:
+        start = t
+        end = t + D
+        events.append((start, 1))
+      
