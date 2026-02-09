@@ -1,22 +1,23 @@
-import sys
+import bisect
 
 def main():
-    input = sys.stdin.read().split()
+    import sys
+    input = sys.stdin.read
+    data = input().split()
     idx = 0
-    t = int(input[idx])
+    t = int(data[idx])
     idx += 1
     for _ in range(t):
-        n = int(input[idx])
-        idx += 1
-        a = list(map(int, input[idx:idx+n]))
-        idx += n
+        n, m = int(data[idx]), int(data[idx+1])
+        idx +=2
+        a = list(map(int, data[idx:idx+n]))
+        idx +=n
+        b = list(map(int, data[idx:idx+n]))
+        idx +=n
         
-        fixed_max = 0
-        for i in range(n-1):
-            if a[i] != -1 and a[i+1] != -1:
-                current = abs(a[i] - a[i+1])
-                if current > fixed_max:
-                    fixed_max = current
-        
-        edges = []
-   
+        type1 = []
+        type2 = []
+        for ai, bi in zip(a, b):
+            if bi == 1:
+                type1.append(ai)
+            
