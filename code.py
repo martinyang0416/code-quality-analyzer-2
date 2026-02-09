@@ -1,19 +1,15 @@
-from collections import deque
-
-def canReach(arr, start):
-    if arr[start] == 0:
-        return True
-    n = len(arr)
-    visited = [False] * n
-    queue = deque([start])
-    visited[start] = True
+def findKthBit(n: int, k: int) -> str:
+    def helper(n: int, k: int) -> int:
+        if n == 1:
+            return 0
+        L = (1 << (n - 1)) - 1
+        if k == L + 1:
+            return 1
+        elif k <= L:
+            return helper(n - 1, k)
+        else:
+            j = k - (L + 1)
+            original_pos = L - j + 1
+            return 1 - helper(n - 1, original_pos)
     
-    while queue:
-        current = queue.popleft()
-        jump = arr[current]
-        for delta in (jump, -jump):
-            next_idx = current + delta
-            if 0 <= next_idx < n and not visited[next_idx]:
-                if arr[next_idx] == 0:
-                    return True
-             
+    return str(helper(n, k))
