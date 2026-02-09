@@ -1,13 +1,19 @@
 import sys
+import re
+from sympy import expand, sympify, SympifyError
 
-for line in sys.stdin:
-    a = list(map(int, line.strip().split()))
-    b_line = sys.stdin.readline()
-    if not b_line:
-        break
-    b = list(map(int, b_line.strip().split()))
-    
-    hits = sum(1 for i in range(4) if a[i] == b[i])
-    common = len(set(a) & set(b))
-    blow = common - hits
-    print(hits, blow)
+def preprocess(s):
+    s = re.sub(r'([a-z])\s*\^\s*(\d)', r'\1**\2', s)
+    s = s.replace(' ', '*')
+    s = re.sub(r'(\))([a-z0-9(])', r'\1*\2', s)
+    s = re.sub(r'([a-z])([a-z0-9(])', r'\1*\2', s)
+    s = re.sub(r'(\d)([a-z(])', r'\1*\2', s)
+    return s
+
+def process_block(block):
+    if not block:
+        return
+    correct_line = block[0]
+    processed_correct = preprocess(correct_line)
+    try:
+        correct_expr = expa
