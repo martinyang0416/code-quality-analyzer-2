@@ -1,17 +1,19 @@
-t = int(input())
-for _ in range(t):
-    all_durations = []
-    total_n = 0
-    for _ in range(7):
-        parts = list(map(int, input().split()))
-        ni = parts[0]
-        total_n += ni
-        starts_ends = parts[1:]
-        for i in range(ni):
-            start = starts_ends[2*i]
-            end = starts_ends[2*i +1]
-            duration = end - start
-            all_durations.append(duration)
-    all_durations.sort()
-    required = (3 * total_n + 3) // 4
-    sum_attended = sum(all_duratio
+from collections import defaultdict
+
+n = int(input())
+a = list(map(int, input().split()))
+
+dp = {0: 1000}  # Represents {stocks: max_money}
+
+for price in a:
+    new_dp = defaultdict(int)
+    for s_prev, m_prev in dp.items():
+        # Do nothing
+        if new_dp[s_prev] < m_prev:
+            new_dp[s_prev] = m_prev
+        # Sell all
+        new_m_sell = m_prev + s_prev * price
+        if new_dp[0] < new_m_sell:
+            new_dp[0] = new_m_sell
+        # Buy as much as possible
+        max_bu
