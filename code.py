@@ -1,17 +1,17 @@
-def maxVowels(s: str, k: int) -> int:
-    vowels = {'a', 'e', 'i', 'o', 'u'}
-    current = 0
-    for i in range(k):
-        if s[i] in vowels:
-            current += 1
-    max_count = current
-    for i in range(k, len(s)):
-        outgoing = s[i - k]
-        if outgoing in vowels:
-            current -= 1
-        incoming = s[i]
-        if incoming in vowels:
-            current += 1
-        if current > max_count:
-            max_count = current
-    return max_count
+from collections import deque
+
+class Solution:
+    def regionsBySlashes(self, grid):
+        n = len(grid)
+        size = 3 * n
+        expanded = [[0] * size for _ in range(size)]
+        
+        for i in range(n):
+            for j in range(n):
+                c = grid[i][j]
+                if c == '/':
+                    for x in range(3):
+                        for y in range(3):
+                            if x + y == 2:
+                                expanded[3*i + x][3*j + y] = 1
+    
