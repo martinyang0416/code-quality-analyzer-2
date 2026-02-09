@@ -1,16 +1,12 @@
 n = int(input())
 a = list(map(int, input().split()))
-from collections import defaultdict
-
-freq = defaultdict(int)
-
+prefix = [0]
 for num in a:
-    msb = num.bit_length() - 1
-    freq[msb] += 1
-
-total = 0
-for count in freq.values():
-    if count >= 2:
-        total += count * (count - 1) // 2
-
-print(total)
+    prefix.append(prefix[-1] + num)
+result = []
+for k in range(1, n + 1):
+    sum_first = prefix[k]
+    sum_last = prefix[n] - prefix[n - k]
+    if sum_first == sum_last:
+        result.append(str(k))
+print(' '.join(result))
