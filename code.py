@@ -1,22 +1,15 @@
-def maxDistance(position, m):
-    position.sort()
-    low = 1
-    high = position[-1] - position[0]
-    res = 0
+def isMatch(s: str, p: str) -> bool:
+    m, n = len(s), len(p)
+    dp_prev = [False] * (n + 1)
+    dp_prev[0] = True  # Empty pattern matches empty string
 
-    def can_place(d):
-        count = 1
-        prev = position[0]
-        for pos in position[1:]:
-            if pos - prev >= d:
-                count += 1
-                prev = pos
-                if count == m:
-                    return True
-        return count >= m
+    # Initialize for the case when the string is empty
+    for j in range(1, n + 1):
+        if p[j - 1] == '*' and dp_prev[j - 1]:
+            dp_prev[j] = True
+        else:
+            break  # Once a non '*' is found, subsequent cannot be matched
 
-    while low <= high:
-        mid = (low + high) // 2
-        if can_place(mid):
-            res = mid
-       
+    # Iterate over each character in the string
+    for i in range(1, m + 1):
+        dp_cur
