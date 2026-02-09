@@ -1,24 +1,22 @@
-n, m, k, h = map(int, input().split())
-s = [int(input()) for _ in range(n)]
-swaps = []
-for _ in range(m):
-    a, b = map(int, input().split())
-    swaps.append(a)
+n, *rest = map(int, open(0).read().split())
+a = rest[:n]
 
-# Compute the permutation T after applying all swaps
-T = list(range(n))
-for a in swaps:
-    i = a - 1
-    if i >= 0 and i + 1 < n:
-        T[i], T[i+1] = T[i+1], T[i]
+from collections import defaultdict
 
-# Compute sum_base
-sum_base = sum(s[T[x]] for x in range(k))
+freq = defaultdict(int)
+for num in a:
+    freq[num] += 1
 
-min_sum = sum_base
+unique = list(freq.keys())
+len_unique = len(unique)
 
-for j in range(m):
-    a = swaps[j]
-    i = a - 1
-    if i < 0 or i + 1 >= n:
-        
+if len_unique >= 3:
+    print(3)
+elif len_unique == 2:
+    a1, a2 = unique[0], unique[1]
+    if freq[a1] >= 2 and freq[a2] >= 2:
+        print(4)
+    else:
+        print(-1)
+else:
+    print(-1)
