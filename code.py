@@ -1,19 +1,22 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
+def main():
+    n = int(input())
+    s = input()
+    fst_lst = [s[0]]
+    snd_lst = []
+    ans = '1'
+    for i in range(1, len(s)):
+        if fst_lst[-1]<=s[i]:
+            fst_lst.append(s[i])
+            ans+='1'
+        else:
+            snd_lst.append(s[i])
+            ans+='0'
+    # print (*fst_lst)
+    # print (*snd_lst)
+    if sorted(snd_lst)==snd_lst:
+        print ('YES')
+        print (ans)
+    else:
+        print ('NO')
+main()
 
-import builtins
-import re
