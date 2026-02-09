@@ -1,19 +1,22 @@
-def determine_holder():
+def main():
     import sys
     input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    for _ in range(T):
-        N = int(input[idx])
-        ID = int(input[idx + 1])
-        idx += 2
-        current = ID
-        last_passer = None
-        for _ in range(N):
-            cmd = input[idx]
-            if cmd == 'P':
-                # Process P command
-                new_id = int(input[idx + 1])
-                idx += 2
-                last_passer = current
+    ptr = 0
+    W = int(input[ptr])
+    ptr +=1
+    H = int(input[ptr])
+    ptr +=1
+    v = list(map(int, input[ptr:ptr+W-1]))
+    ptr += W-1
+    h = list(map(int, input[ptr:ptr+H-1]))
+    ptr += H-1
+    
+    # Calculate the position to split vertically
+    split_v = (W // 2) -1
+    sum_v = sum(v[:split_v +1])
+    
+    # Calculate the position to split horizontally
+    split_h = (H // 2) -1
+    sum_h = sum(h[:split_h +1])
+    
+    t
