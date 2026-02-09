@@ -1,25 +1,20 @@
-n, k, s = map(int, input().split())
-a = list(map(int, input().split()))
-
-prefix = [0] * (n + 1)
-for i in range(n):
-    prefix[i+1] = prefix[i] + a[i]
-
-left = k + 1
-right = n
-ans = -1
-
-while left <= right:
-    mid = (left + right) // 2
-    if mid > n:
-        valid = False
-    else:
-        valid = any((prefix[i + mid] - prefix[i] > s) for i in range(n - mid + 1))
-    
-    if valid:
-        ans = mid
-        right = mid - 1
-    else:
-        left = mid + 1
-
-print(ans if ans != -1 else -1)
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    T = int(input[ptr])
+    ptr +=1
+    for _ in range(T):
+        N, M = int(input[ptr]), int(input[ptr+1])
+        ptr +=2
+        R = list(map(int, input[ptr:ptr+N]))
+        ptr +=N
+        monthly_ratings = []
+        for i in range(N):
+            C = list(map(int, input[ptr:ptr+M]))
+            ptr +=M
+            current = R[i]
+            ratings = []
+            for c in C:
+                current += c
+        
