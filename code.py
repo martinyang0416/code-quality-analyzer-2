@@ -1,16 +1,12 @@
-def search(nums, target):
-    left, right = 0, len(nums) - 1
-    while left <= right:
-        mid = (left + right) // 2
-        if nums[mid] == target:
-            return True
-        if nums[left] < nums[mid]:
-            if nums[left] <= target < nums[mid]:
-                right = mid - 1
-            else:
-                left = mid + 1
-        elif nums[left] > nums[mid]:
-            if nums[mid] < target <= nums[right]:
-                left = mid + 1
-            else:
-                right =
+def maxScoreSightseeingPair(A):
+    max_so_far = A[0] + 0  # A[i] + i for i=0
+    result = 0
+    for j in range(1, len(A)):
+        current_score = max_so_far + (A[j] - j)
+        if current_score > result:
+            result = current_score
+        # Update max_so_far for next iterations
+        current_i_value = A[j] + j
+        if current_i_value > max_so_far:
+            max_so_far = current_i_value
+    return result
