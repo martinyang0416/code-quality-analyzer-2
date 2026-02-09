@@ -1,23 +1,19 @@
-from collections import deque
+import sys
+import math
+
+MOD = 10**9 + 7
 
 def main():
-    import sys
-    sys.setrecursionlimit(1 << 25)
-    n = int(sys.stdin.readline())
-    adj = [[] for _ in range(n+1)]
-    for _ in range(n-1):
-        u, v = map(int, sys.stdin.readline().split())
-        adj[u].append(v)
-        adj[v].append(u)
-    
-    parent = [-1] * (n + 1)
-    visited = [False] * (n + 1)
-    
-    q = deque()
-    q.append(1)
-    visited[1] = True
-    parent[1] = -1  # root has no parent
-    
-    while q:
-        u = q.popleft()
-  
+    T = int(sys.stdin.readline())
+    for _ in range(T):
+        N = int(sys.stdin.readline())
+        B = list(map(int, sys.stdin.readline().split()))
+        P = sum(B)
+        g = math.gcd(P, 5)
+        exponent = 5 // g
+        n = pow(2, exponent, MOD)
+        result = pow(n, P, MOD)
+        print(result)
+
+if __name__ == "__main__":
+    main()
