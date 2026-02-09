@@ -1,21 +1,21 @@
-import sys
-sys.setrecursionlimit(1 << 25)
+import bisect
+from itertools import permutations
+from collections import defaultdict
 
-def main():
-    import sys
-    n, m, q = map(int, sys.stdin.readline().split())
-    total_nodes = n + m
-    parent = list(range(total_nodes + 1))  # 1-based indexing
-    rank = [1] * (total_nodes + 1)
-    
-    def find(u):
-        if parent[u] != u:
-            parent[u] = find(parent[u])
-        return parent[u]
-    
-    def union(u, v):
-        u_root = find(u)
-        v_root = find(v)
-        if u_root == v_root:
-            return
-        if rank[u_
+n, q = map(int, input().split())
+universe = input().strip()
+
+char_indices = defaultdict(list)
+for idx, c in enumerate(universe):
+    char_indices[c].append(idx)
+
+religions = [[], [], []]
+
+def check_sequence(seq, indices):
+    current_pos = 0
+    used = []
+    for c in seq:
+        lst = indices.get(c, [])
+        pos = bisect.bisect_left(lst, current_pos)
+        if pos >= len(lst):
+            return (False, [
