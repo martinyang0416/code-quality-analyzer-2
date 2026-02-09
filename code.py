@@ -1,20 +1,17 @@
-from collections import deque
+import sys
 
-n, m, k = map(int, input().split())
-grid = [list(input().strip()) for _ in range(n)]
-
-# Find all empty cells and the starting cell
-start = None
-empty = []
-for i in range(n):
-    for j in range(m):
-        if grid[i][j] == '.':
-            empty.append((i, j))
-            if start is None:
-                start = (i, j)
-
-# BFS to build the spanning tree and children structure
-children = {}
-visited = [[False for _ in range(m)] for _ in range(n)]
-q = deque()
-i0, j0 = 
+def main():
+    n, x, y = map(int, sys.stdin.readline().split())
+    for _ in range(n):
+        a = int(sys.stdin.readline())
+        low = 0.0
+        high = a * max(1.0 / x, 1.0 / y) + 1.0
+        for __ in range(100):
+            mid = (low + high) / 2
+            sum_mid = (mid * x).__floor__() + (mid * y).__floor__()
+            if sum_mid < a:
+                low = mid
+            else:
+                high = mid
+        t = high
+        sum_floor = (t * x).__floor__() + (t * y
