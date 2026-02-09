@@ -1,25 +1,23 @@
-import bisect
-
 def main():
     import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx += 1
-    a = list(map(int, input[idx:idx+N]))
-    idx += N
-    S = sorted(a)
-    prefix = [0] * (N + 1)
-    for i in range(N):
-        prefix[i+1] = prefix[i] + S[i]
-    
-    # Compute initial T
-    T = 0
-    for i in range(N):
-        T += (i + 1) * S[i]
-    
-    Q = int(input[idx])
-    idx += 1
-    for _ in range(Q):
-        i = int(input[idx])
-        j = int(input[idx+1]
+    t = sys.stdin.read().strip()
+    n = len(t)
+    if n == 0:
+        print(0)
+        return
+
+    # Precompute prefix sums for b, e, s, i
+    pre_b = [0] * (n + 1)
+    pre_e = [0] * (n + 1)
+    pre_s = [0] * (n + 1)
+    pre_i = [0] * (n + 1)
+
+    for i in range(n):
+        pre_b[i+1] = pre_b[i]
+        pre_e[i+1] = pre_e[i]
+        pre_s[i+1] = pre_s[i]
+        pre_i[i+1] = pre_i[i]
+        c = t[i]
+        if c == 'b':
+            pre_b[i+1] += 1
+        elif c == '
