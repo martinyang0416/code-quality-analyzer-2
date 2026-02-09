@@ -1,17 +1,16 @@
 import sys
 
-def generate_partitions():
-    elements = [1, 2, 3, 4, 5, 6]
-    all_partitions = []
-    
-    def backtrack(remaining, path):
-        if not remaining:
-            all_partitions.append(path.copy())
+def main():
+    def generate_pairings(elements):
+        if not elements:
+            yield []
             return
-        first = remaining[0]
-        for i in range(1, len(remaining)):
-            pair = (first, remaining[i])
-            new_remaining = remaining[1:i] + remaining[i+1:]
-            path.append(pair)
-            backtrack(new_remaining, path)
-            path.pop()
+        first = elements[0]
+        for i in range(1, len(elements)):
+            pair = (first, elements[i])
+            remaining = elements[1:i] + elements[i+1:]
+            for sub in generate_pairings(remaining):
+                yield [pair] + sub
+
+    all_elements = [1, 2, 3, 4, 5, 6]
+    all_pairings = list(generate_pairings(all_elements))  # Precompute all possibl
