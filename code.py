@@ -1,18 +1,12 @@
-from collections import defaultdict
-
-def canArrange(arr, k):
-    count = defaultdict(int)
-    for num in arr:
-        remainder = num % k
-        count[remainder] += 1
-    if count.get(0, 0) % 2 != 0:
-        return False
-    for i in range(1, k // 2 + 1):
-        j = k - i
-        if i == j:
-            if count.get(i, 0) % 2 != 0:
-                return False
-        else:
-            if count.get(i, 0) != count.get(j, 0):
-                return False
-    return True
+def maxProfit(prices):
+    if not prices:
+        return 0
+    s0 = 0
+    s1 = -prices[0]
+    s2 = float('-inf')
+    for price in prices[1:]:
+        new_s0 = max(s0, s2)
+        new_s1 = max(s1, s0 - price)
+        new_s2 = s1 + price
+        s0, s1, s2 = new_s0, new_s1, new_s2
+    return max(s0, s2)
