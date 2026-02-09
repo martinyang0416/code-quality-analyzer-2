@@ -1,18 +1,21 @@
-from collections import deque
-from collections import defaultdict
+import math
+from typing import List
 
-def numOfMinutes(n, headID, manager, informTime):
-    adj = defaultdict(list)
-    for i in range(n):
-        if manager[i] != -1:
-            adj[manager[i]].append(i)
+class Solution:
+    def sumFourDivisors(self, nums: List[int]) -> int:
+        total = 0
+        for num in nums:
+            total += self.calculate_sum(num)
+        return total
     
-    max_time = 0
-    time_informed = [0] * n
-    q = deque([headID])
-    
-    while q:
-        current = q.popleft()
-        for sub in adj.get(current, []):
-            time_informed[sub] = time_informed[current] + informTime[current]
-            if time_info
+    def calculate_sum(self, n):
+        if n == 1:
+            return 0
+        sum_div = 0
+        count = 0
+        sqrt_n = int(math.sqrt(n))
+        for i in range(1, sqrt_n + 1):
+            if n % i == 0:
+                if i * i == n:
+                    sum_div += i
+   
