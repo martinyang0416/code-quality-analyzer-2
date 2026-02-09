@@ -1,16 +1,18 @@
-import bisect
+class DSU:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.size = [1] * n
 
-def jobScheduling(startTime, endTime, profit):
-    jobs = sorted(zip(startTime, endTime, profit), key=lambda x: x[1])
-    end_times = []
-    dp = []
-    for s, e, p in jobs:
-        idx = bisect.bisect_right(end_times, s) - 1
-        current = p
-        if idx >= 0:
-            current += dp[idx]
-        if dp:
-            current = max(current, dp[-1])
-        dp.append(current)
-        end_times.append(e)
-    return dp[-1] if dp else 0
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x, y):
+        x_root = self.find(x)
+        y_root = self.find(y)
+        if x_root == y_root:
+            return
+        if self.size[x_root] < self.size[y_root]:
+            x_root, y_root = y_root, x_root
+        self.parent[y_root
