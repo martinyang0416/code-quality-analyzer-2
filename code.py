@@ -1,27 +1,23 @@
 from collections import deque
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx += 1
-    M = int(input[idx])
-    idx += 1
+n = int(input())
+b = input().strip()
+buildings = list(b)
+queue = deque()
 
-    adj = [[] for _ in range(N)]
-    for _ in range(M):
-        u = int(input[idx])
-        idx += 1
-        v = int(input[idx])
-        idx += 1
-        adj[u].append(v)
-        adj[v].append(u)
-    
-    levels = [-1] * N
-    levels[0] = 0
-    q = deque([0])
+# Initialize queue with all initial 'D's
+for i in range(n):
+    if buildings[i] == 'D':
+        queue.append(i)
 
-    while q:
-        u = q.popleft()
-        for v in adj
+# Process each 'D' to destroy adjacent 'S's
+while queue:
+    i = queue.popleft()
+    for dx in (-1, 1):
+        ni = i + dx
+        if 0 <= ni < n and buildings[ni] == 'S':
+            buildings[ni] = 'D'
+            queue.append(ni)
+
+# Count the remaining 'S's
+count = sum(1 for c 
