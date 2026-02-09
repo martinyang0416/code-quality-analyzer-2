@@ -1,7 +1,3 @@
-a1, a2, a3 = map(int, input().split())
-target = a3 + 1
-terms = [a1, a2]
-for i in range(2, target):
-    next_term = terms[-1] + terms[-2]
-    terms.append(next_term)
-print(terms[-1])
+s = input().strip()
+last_digit = s[-1]
+print(1 if int(last_digit) % 2 else 0)
