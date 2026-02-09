@@ -1,20 +1,18 @@
-import sys
+n, L = map(int, input().split())
+intervals = [tuple(map(int, input().split())) for _ in range(n)]
 
-def main():
-    while True:
-        line = sys.stdin.readline()
-        if not line:
-            break
-        line = line.strip()
-        while line == '':
-            line = sys.stdin.readline().strip()
-        N, M = map(int, line.split())
-        if N == 0 and M == 0:
-            break
-        C = []
-        for _ in range(M):
-            c = int(sys.stdin.readline().strip())
-            C.append(c)
-        xs = []
-        for _ in range(N):
-            x = int(sys.stdin.readline
+# Compute x
+sorted_intervals = sorted(intervals, key=lambda x: (x[0], -x[1]))
+current_end = 0
+count = 0
+i = 0
+possible = True
+
+while current_end < L:
+    max_r = current_end
+    while i < len(sorted_intervals) and sorted_intervals[i][0] <= current_end:
+        if sorted_intervals[i][1] > max_r:
+            max_r = sorted_intervals[i][1]
+        i += 1
+    if max_r == current_end:
+        possible =
