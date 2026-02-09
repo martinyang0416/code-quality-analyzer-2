@@ -1,18 +1,21 @@
 def main():
-    row1 = {'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'}
-    row2 = {'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'}
-    row3 = {'Z', 'X', 'C', 'V', 'B', 'N', 'M'}
-
     s = input().strip()
+    vowels = {'A', 'E', 'I', 'O', 'U'}
+    pattern = []
+    for c in s:
+        if c in vowels:
+            pattern.append('V')
+        else:
+            pattern.append('C')
+    
+    # Check if the pattern is a palindrome
+    if pattern == pattern[::-1]:
+        vowel_count = sum(1 for c in s if c in vowels)
+        if vowel_count % 2 == 0:
+            print("YES")
+        else:
+            print("NO")
+    else:
+        print("NO")
 
-    # Check all characters are in row1
-    if all(c in row1 for c in s):
-        print("YES")
-        return
-    # Check all characters are in row2
-    if all(c in row2 for c in s):
-        print("YES")
-        return
-    # Check all characters are in row3
-    if all(c in row3 for c in s):
-     
+if __name__ == "__main__":
