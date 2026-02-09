@@ -1,19 +1,13 @@
-from collections import defaultdict
+import sys
 
-n = int(input())
-a = list(map(int, input().split()))
-
-dp = {0: 1000}  # Represents {stocks: max_money}
-
-for price in a:
-    new_dp = defaultdict(int)
-    for s_prev, m_prev in dp.items():
-        # Do nothing
-        if new_dp[s_prev] < m_prev:
-            new_dp[s_prev] = m_prev
-        # Sell all
-        new_m_sell = m_prev + s_prev * price
-        if new_dp[0] < new_m_sell:
-            new_dp[0] = new_m_sell
-        # Buy as much as possible
-        max_bu
+for line in sys.stdin:
+    a = list(map(int, line.strip().split()))
+    b_line = sys.stdin.readline()
+    if not b_line:
+        break
+    b = list(map(int, b_line.strip().split()))
+    
+    hits = sum(1 for i in range(4) if a[i] == b[i])
+    common = len(set(a) & set(b))
+    blow = common - hits
+    print(hits, blow)
