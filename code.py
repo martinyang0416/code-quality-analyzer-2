@@ -1,19 +1,22 @@
 import sys
-import math
-
-MOD = 10**9 + 7
 
 def main():
-    T = int(sys.stdin.readline())
-    for _ in range(T):
-        N = int(sys.stdin.readline())
-        B = list(map(int, sys.stdin.readline().split()))
-        P = sum(B)
-        g = math.gcd(P, 5)
-        exponent = 5 // g
-        n = pow(2, exponent, MOD)
-        result = pow(n, P, MOD)
-        print(result)
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    t = int(data[idx])
+    idx += 1
+    for _ in range(t):
+        n = int(data[idx])
+        idx += 1
+        a = list(map(int, data[idx:idx+n]))
+        idx += n
+        c = list(map(int, data[idx:idx+n]))
+        idx += n
+        c_sorted = sorted(c)
+        d = [a[i] - c_sorted[i] for i in range(n)]
+        print(' '.join(map(str, d)))
+        print(' '.join(map(str, d)))
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+   
