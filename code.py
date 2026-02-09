@@ -1,20 +1,17 @@
-from collections import deque
-from defaultdict import defaultdict
+from collections import defaultdict, Counter
+from typing import List
 
-def minJumps(arr):
-    n = len(arr)
-    if n == 1:
-        return 0
-    
-    # Create a dictionary to map each value to its indices
-    value_indices = defaultdict(list)
-    for i, num in enumerate(arr):
-        value_indices[num].append(i)
-    
-    visited = [False] * n
-    queue = deque([(0, 0)])
-    visited[0] = True
-    
-    while queue:
-        current_idx, steps = queue.popleft()
-        # Check if we've reached the last in
+def count_pairs(arr: List[int], T: int) -> int:
+    freq = defaultdict(int)
+    count = 0
+    for num in arr:
+        if T % num == 0:
+            quotient = T // num
+            count += freq.get(quotient, 0)
+        freq[num] += 1
+    return count
+
+class Solution:
+    def numTriplets(self, nums1: List[int], nums2: List[int]) -> int:
+        # Compute frequency maps for squares of elements in both arrays
+        freq1 = Count
