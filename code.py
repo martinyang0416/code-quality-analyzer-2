@@ -1,22 +1,19 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    t = input[idx]
-    idx += 1
-    U = int(input[idx])
-    idx += 1
-    updates = []
-    for _ in range(U):
-        p = int(input[idx]) - 1  # converting to 0-based
-        c = input[idx+1]
-        updates.append((p, c))
-        idx += 2
+import sys
 
-    def compute_A(s):
-        n = len(s)
-        # Precompute prefix arrays for b, e, s, i
-        prefix_b = [0]*(n+1)
-        prefix_e = [0]*(n+1)
-        prefix_s = [0]*(n+1)
-      
+def compute(s):
+    target = ['b', 'e', 's', 's', 'i', 'e']
+    count = [0] * 7
+    total = 0
+    for c in s:
+        new_count = [0] * 7
+        # Handle new substrings starting at current character
+        if c == target[0]:
+            new_count[1] += 1
+        else:
+            new_count[0] += 1
+        # Process previous counts
+        for i in range(7):
+            if count[i] > 0:
+                new_count[i] += count[i]
+                if c == target[i]:
+                    n
