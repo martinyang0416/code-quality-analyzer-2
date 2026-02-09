@@ -1,6 +1,3 @@
-s = input().strip()
-total = sum(int(c) for c in s)
-
 def is_prime(n):
     if n < 2:
         return False
@@ -9,4 +6,6 @@ def is_prime(n):
             return False
     return True
 
+s = input().strip()
+total = sum(int(c) for c in s)
 print("Yes" if is_prime(total) else "No")
