@@ -1,22 +1,21 @@
+import heapq
 import sys
+from collections import defaultdict
 
-n = int(sys.stdin.readline())
-a = list(map(int, sys.stdin.readline().split()))
+def main():
+    input = sys.stdin.read().split()
+    ptr = 0
+    n = int(input[ptr]); ptr +=1
+    m = int(input[ptr]); ptr +=1
+    L = int(input[ptr]); ptr +=1
+    s = int(input[ptr]); ptr +=1
+    t = int(input[ptr]); ptr +=1
 
-min_a = min(a)
-max_a = max(a)
-
-def compute_weakness(x):
-    if n == 0:
-        return 0.0
-    # Compute max subarray sum
-    current_max = a[0] - x
-    max_sum = current_max
-    for num in a[1:]:
-        current_max = max(num - x, current_max + (num - x))
-        max_sum = max(max_sum, current_max)
-    # Compute min subarray sum
-    current_min = a[0] - x
-    min_sum = current_min
-    for num in a[1:]:
+    edges = []
+    adj_fixed = [[] for _ in range(n)]
+    adj_S = [[] for _ in range(n)]
+    original_edges = []
+    for _ in range(m):
+        u = int(input[ptr]); ptr +=1
+        v = int(input[ptr]); ptr +=1
   
