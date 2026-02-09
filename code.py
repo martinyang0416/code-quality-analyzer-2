@@ -1,24 +1,19 @@
-from collections import defaultdict
+import sys
 
-m = int(input())
-a = []
-for _ in range(m):
-    s = input().strip()
-    row = [int(c) for c in s]
-    a.append(row)
-
-max_mask = 1 << m
-dp = [[defaultdict(int) for _ in range(m)] for __ in range(max_mask)]
-
-for u in range(m):
-    mask = 1 << u
-    dp[mask][u][0] = 1
-
-masks_by_k = [[] for _ in range(m + 1)]
-for mask in range(max_mask):
-    k = bin(mask).count('1')
-    if 0 < k <= m:
-        masks_by_k[k].append(mask)
-
-for k in range(1, m + 1):
-    for mask in ma
+def longest_common_substring(s1, s2):
+    s1 = s1.lower()
+    s2 = s2.lower()
+    n = len(s1)
+    m = len(s2)
+    max_length = 0
+    prev_row = [0] * (m + 1)
+    for i in range(n):
+        current_row = [0] * (m + 1)
+        for j in range(m):
+            if s1[i] == s2[j]:
+                current_row[j+1] = prev_row[j] + 1
+                if current_row[j+1] > max_length:
+                    max_length = current_row[j+1]
+            else:
+                current_row[j+1] = 0
+       
