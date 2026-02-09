@@ -1,22 +1,21 @@
 import sys
-from sys import stdin
+from collections import deque
 
 def main():
-    sys.setrecursionlimit(1 << 25)
-    n = int(stdin.readline())
-    adj = [[] for _ in range(n + 1)]
-    for _ in range(n - 1):
-        u, v = map(int, stdin.readline().split())
-        adj[u].append(v)
-        adj[v].append(u)
-    
-    parent = [0] * (n + 1)
-    parent[1] = -1  # Root has no parent
-    size = [1] * (n + 1)
-    T = 0
-    stack = [(1, False)]
-    
-    while stack:
-        node, visited = stack.pop()
-        if not visited:
-          
+    input = sys.stdin.read
+    data = input().split()
+    ptr = 0
+    t = int(data[ptr])
+    ptr += 1
+    for _ in range(t):
+        n = int(data[ptr])
+        m = int(data[ptr+1])
+        ptr +=2
+        tourist_nodes = []
+        if m > 0:
+            tourist_nodes = list(map(int, data[ptr:ptr+m]))
+            ptr += m
+        adj = [[] for _ in range(n+1)]
+        for __ in range(n-1):
+            u = int(data[ptr])
+            v = int(dat
