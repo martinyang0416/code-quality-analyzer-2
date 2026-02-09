@@ -1,23 +1,19 @@
 import bisect
 
 def putaway(A, B, T, X, Y, W, S):
-    if A == 0 and B == 0:
-        return -1  # According to problem constraints, this shouldn't happen
+    X_sorted = sorted(X)
+    Y_sorted = sorted(Y)
     
-    # Sort the X and Y arrays
-    sorted_X = sorted(X) if A != 0 else []
-    sorted_Y = sorted(Y) if B != 0 else []
-    
-    count_w_only = 0
-    count_s_only = 0
-    flex = 0
+    a = 0  # toys can only go to weak
+    b = 0  # can only go to small
+    c = 0  # can go to either
     
     for i in range(T):
-        w = W[i]
-        s = S[i]
+        wi = W[i]
+        si = S[i]
         
-        # Determine can_w
-        if A == 0:
-            can_w = False
-        else:
-           
+        # Check possible_w: is there any X[j] > wi?
+        possible_w = bisect.bisect_right(X_sorted, wi) < len(X_sorted)
+        
+        # Check possible_s: is there any Y[j] > si?
+        possible_s = bisect.bisect_ri
