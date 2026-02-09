@@ -1,17 +1,20 @@
 import sys
+import bisect
 
 def main():
-    N, K, T = map(int, sys.stdin.readline().split())
-    A = list(map(int, sys.stdin.readline().split()))
-    # Compute deltas for each position
-    deltas = []
-    for j in range(K):
-        next_j = (j + 1) % K
-        delta = (A[next_j] - A[j]) % N
-        deltas.append(delta)
-    
-    # For each residue r mod N, compute the displacement_contribution[r]
-    displacement_contribution = [0] * N
-    for j in range(K):
-        c_j = A[j] % N  # c_j = A_j mod N
-        delt
+    sys.setrecursionlimit(1 << 25)
+    N, Q = map(int, sys.stdin.readline().split())
+    s = sys.stdin.readline().strip()
+    spec = sys.stdin.readline().strip()
+
+    L_indices = []
+    R_indices = []
+    for idx, c in enumerate(s):
+        if c == 'L':
+            L_indices.append(idx)
+        else:
+            R_indices.append(idx)
+
+    # Compute ℓ and r arrays
+    ell = [(L_indices[i] + 1) for i in range(N)]
+    r = [(R_indices[i] + 1) for i in range(N)]
