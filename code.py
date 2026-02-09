@@ -1,18 +1,22 @@
 import sys
-from functools import lru_cache
 
-def main():
-    N = sys.stdin.readline().strip()
-    K = int(sys.stdin.readline())
-    digits = list(map(int, N))
-    n = len(digits)
+def convert_seconds(sec):
+    h = sec // 3600
+    rem = sec % 3600
+    m = rem // 60
+    s = rem % 60
+    return f"{h:02}:{m:02}:{s:02}"
 
-    @lru_cache(maxsize=None)
-    def dp(pos, tight, leading_zero, cnt):
-        if pos == n:
-            return 0 if leading_zero else (1 if cnt == K else 0)
-        res = 0
-        max_d = digits[pos] if tight else 9
-        for d in range(0, max_d + 1):
-            new_tight = tight and (d == max_d)
-            new_le
+for line in sys.stdin:
+    line = line.strip()
+    if not line:
+        continue
+    T, H, S = map(int, line.split())
+    if T == -1 and H == -1 and S == -1:
+        break
+    total_used = T * 3600 + H * 60 + S
+    remaining = 7200 - total_used
+    std_time = remaining
+    triple_time = remaining * 3
+    print(convert_seconds(std_time))
+    print(c
