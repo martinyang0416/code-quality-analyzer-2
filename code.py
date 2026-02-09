@@ -1,26 +1,19 @@
+import math
 import sys
-sys.setrecursionlimit(1 << 25)
 
-def pow_less(a, b, limit):
-    res = 1
-    for _ in range(b):
-        res *= a
-        if res >= limit:
-            return False
-    return res < limit
-
-memo = {}
-
-def can_win(a, b, n):
-    key = (a, b)
-    if key in memo:
-        return memo[key]
+def main():
+    n, c, d = map(int, sys.stdin.readline().split())
+    points = []
+    for _ in range(n):
+        r, w = map(int, sys.stdin.readline().split())
+        a = r - c
+        b = w - d
+        points.append((a, b))
     
-    move_a_valid = pow_less(a + 1, b, n)
-    move_b_valid = pow_less(a, b + 1, n)
-    
-    if not move_a_valid and not move_b_valid:
-        memo[key] = False
-        return False
-    
-    result = False
+    # Compute angles and handle edge cases
+    thetas = []
+    for a, b in points:
+        if a == 0 and b == 0:
+            continue  # But problem states |ri'| + |wi'| >0, so this cannot happen
+        theta = math.atan2(b, a)
+        thetas.app
