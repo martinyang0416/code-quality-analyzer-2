@@ -1,13 +1,20 @@
-import bisect
-
-n, k = map(int, input().split())
-a = list(map(int, input().split()))
-a.sort()
-
-total = 0
-for i in range(n):
-    target = a[i] + k
-    j = bisect.bisect_left(a, target, i + 1, n)
-    total += n - j
-
-print(total)
+# Read the number of test cases
+T = int(input())
+for _ in range(T):
+    # Read Ram's truth tasks
+    tr = int(input())
+    Tr = list(map(int, input().split()))
+    tr_set = set(Tr)
+    
+    # Read Ram's dare tasks
+    dr = int(input())
+    Dr = list(map(int, input().split()))
+    dr_set = set(Dr)
+    
+    # Read Shyam's truth tasks
+    ts = int(input())
+    Ts = list(map(int, input().split())) if ts > 0 else []
+    
+    # Read Shyam's dare tasks
+    ds = int(input())
+    Ds = list(map(int, input
