@@ -1,3 +1,3 @@
-Okay, I need to solve this programming problem where the input is an integer a between 0 and 35, and I have to output another integer. Let's see the examples they gave. When the input was 3, the output was 8. Hmm, 2^3 is 8. Oh right, maybe it's 2 raised to the power of a? But wait, let's check the second example. Input 10 gives 1024. Oh yeah, 2^10 is 1024. So that makes sense. So the problem is probably to compute 2^a. 
+Okay, I need to solve this programming problem where the input is an integer a between 0 and 35, and I have to output another integer. Let's see the examples they gave. When the input was 3, the output was 8. Hmm, 2^3 is 8. Oh right! Wait, maybe the problem is to compute 2 raised to the power of a? But let me check the other example. Input 10 gives 1024. Oh yeah, 2^10 is 1024. So that's exactly it. So the task is simply to compute 2^a.
 
-Wait, but why would the input be up to 35? Because 2^35 is a pretty big num
+Wait, but why the constraints up to 35? Let me think. Oh ri
