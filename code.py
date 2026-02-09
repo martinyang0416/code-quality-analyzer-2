@@ -1,14 +1,21 @@
-n, m = map(int, input().split())
-a = list(map(int, input().split()))
-b = list(map(int, input().split()))
-
-a_sorted = sorted(a)
-b_sorted = sorted(b)
-
-min_x = m  # Initialize with the maximum possible value
-
-for j in range(n):
-    # Calculate the candidate x based on the j-th element of sorted b and the first element of sorted a
-    x_candidate = (b_sorted[j] - a_sorted[0]) % m
-    # Generate the transformed array after adding x_candidate and mod m
-    transformed = [(num + x_candidate) % m for nu
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    if n == 1:
+        print(0)
+        continue
+    a = 0
+    while n % 2 == 0:
+        a += 1
+        n = n // 2
+    b = 0
+    while n % 3 == 0:
+        b += 1
+        n = n // 3
+    if n != 1:
+        print(-1)
+    else:
+        if a > b:
+            print(-1)
+        else:
+            print(2 * b - a)
