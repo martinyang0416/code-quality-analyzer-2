@@ -1,13 +1,18 @@
-def PredictTheWinner(nums):
-    n = len(nums)
-    dp = [[0] * n for _ in range(n)]
+def maxUniqueSplit(s: str) -> int:
+    max_count = 0
+    n = len(s)
     
-    for i in range(n):
-        dp[i][i] = nums[i]
-    
-    for l in range(2, n + 1):
-        for i in range(n - l + 1):
-            j = i + l - 1
-            dp[i][j] = max(nums[i] - dp[i+1][j], nums[j] - dp[i][j-1])
-    
-    return dp[0][n-1] >= 0
+    def backtrack(start, used):
+        nonlocal max_count
+        if start == n:
+            current = len(used)
+            if current > max_count:
+                max_count = current
+            return
+        for end in range(start + 1, n + 1):
+            substr = s[start:end]
+            if substr not in used:
+                used.add(substr)
+                backtrack(end, used)
+                used.remove(substr)
+   
