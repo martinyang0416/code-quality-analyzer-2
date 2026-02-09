@@ -1,3 +1,5 @@
 a = int(input())
-sum_digits = (a // 10) + (a % 10)
-print("YES" if sum_digits % 5 == 0 else "NO")
+if a % 5 == 0 or a % 23 == 0:
+    print("YES")
+else:
+    print("NO")
