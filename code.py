@@ -1,23 +1,22 @@
-import heapq
-
-class Edge:
-    def __init__(self, to, rev, capacity, cost):
-        self.to = to
-        self.rev = rev
-        self.capacity = capacity
-        self.cost = cost
-
-def add_edge(adj, fr, to, capacity, cost):
-    adj[fr].append(Edge(to, len(adj[to]), capacity, cost))
-    adj[to].append(Edge(fr, len(adj[fr])-1, 0, -cost))
-
-def min_cost_flow(adj, s, t, maxf):
-    n = len(adj)
-    res = 0.0
-    h = [0.0] * n
-    prevv = [0] * n
-    preve = [0] * n
-    INF = float('inf')
-
-    flow = 0
-  
+Q = int(input())
+for _ in range(Q):
+    n = int(input())
+    seen = set()
+    steps = 0
+    current = n
+    while True:
+        if current < 10:
+            print(steps)
+            break
+        if current in seen:
+            print(-1)
+            break
+        seen.add(current)
+        s = str(current)
+        max_prod = 0
+        for i in range(1, len(s)):
+            left = int(s[:i])
+            right = int(s[i:])
+            prod = left * right
+            if prod > max_prod:
+            
