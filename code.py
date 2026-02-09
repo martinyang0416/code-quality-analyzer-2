@@ -1,11 +1,12 @@
-p = int(input())
-vowels = {'a', 'e', 'i', 'o', 'u'}
-for _ in range(p):
-    s1 = input().strip()
-    s2 = input().strip()
-    s1_vowels = set(c for c in s1 if c in vowels)
-    s2_vowels = set(c for c in s2 if c in vowels)
-    if s1_vowels & s2_vowels:
-        print("YES")
-    else:
-        print("NO")
+m = int(input())
+if m > 0:
+    for i in range(m):
+        row = []
+        for j in range(m):
+            d1 = i
+            d2 = (m - 1) - i
+            d3 = j
+            d4 = (m - 1) - j
+            min_d = min(d1, d2, d3, d4)
+            row.append(str(min_d))
+        print(' '.join(row))
