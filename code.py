@@ -1,15 +1,14 @@
-def new21Game(N, K, W):
-    if K == 0:
-        return 1.0
-    dp = [0.0] * K
-    current_sum = 0.0
-    for s in range(K-1, -1, -1):
-        d_min = K - s
-        d_max = min(W, N - s)
-        count1 = max(0, d_max - d_min + 1) if d_max >= d_min else 0
-        dp[s] = (current_sum + count1) / W
-        if s + W <= K - 1:
-            current_sum += dp[s] - dp[s + W]
-        else:
-            current_sum += dp[s]
-    return dp[0]
+def findKthNumber(lo, hi, k):
+    def get_power(x, memo={1: 0}):
+        if x not in memo:
+            if x % 2 == 0:
+                next_x = x // 2
+            else:
+                next_x = 3 * x + 1
+            memo[x] = 1 + get_power(next_x, memo)
+        return memo[x]
+    
+    numbers = list(range(lo, hi + 1))
+    power_list = [(get_power(num), num) for num in numbers]
+    power_list.sort(key=lambda x: (x[0], x[1]))
+    return power_list[k-1][1]
