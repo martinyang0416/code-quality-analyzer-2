@@ -1,17 +1,30 @@
-H, W = map(int, input().split())
-A = [list(map(int, input().split())) for _ in range(H)]
-B = [list(map(int, input().split())) for _ in range(H)]
-h, w = map(int, input().split())
-C = [list(map(int, input().split())) for _ in range(h)]
+MOD = 10**9 + 7
 
-max_sum = None
+S = input().strip()
+T = input().strip()
+n = len(S)
 
-for i in range(H - h + 1):
-    for j in range(W - w + 1):
-        match = True
-        for di in range(h):
-            if not match:
-                break
-            for dj in range(w):
-                if B[i + di][j + dj] != C[di][dj]:
-           
+current_lt = 0
+current_lt_sum = 0
+current_eq = 1
+current_eq_sum = 0
+
+for i in range(n):
+    s_digit = int(S[i])
+    t_char = T[i]
+    
+    if t_char == '?':
+        digits = list(range(10))
+    else:
+        digits = [int(t_char)]
+    
+    new_lt = 0
+    new_lt_sum = 0
+    new_eq = 0
+    new_eq_sum = 0
+    
+    # Process transitions from eq state
+    if current_eq > 0:
+        for d in digits:
+            if d < s_digit:
+      
