@@ -1,24 +1,13 @@
-n, m, k = map(int, input().split())
-s = list(map(int, input().split()))
-a = list(map(int, input().split()))
-
-blocked_ptr = 0
-available = []
-for x in range(n):
-    if blocked_ptr < m and x == s[blocked_ptr]:
-        blocked_ptr += 1
-    else:
-        available.append(x)
-
-if not available:
-    print(-1)
-else:
-    min_cost = float('inf')
-    import bisect
-    for l in range(1, k+1):
-        current = 0
-        cnt = 0
-        possible = True
-        prev_current = -1
-        while current < n:
-    
+# Read the number of test cases
+T = int(input())
+for _ in range(T):
+    # Read N and K for each test case
+    N, K = map(int, input().split())
+    # Read the list of numbers
+    numbers = list(map(int, input().split()))
+    # Compute the number of set bits for each number
+    set_bits = [bin(num).count('1') for num in numbers]
+    # Sort the set bits in descending order
+    set_bits.sort(reverse=True)
+    # Sum the top K values
+    print(sum(set_bits[:K]))
