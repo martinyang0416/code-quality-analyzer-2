@@ -1,15 +1,15 @@
-def mctFromLeafValues(arr):
-    n = len(arr)
-    max_table = [[0] * n for _ in range(n)]
-    for i in range(n):
-        max_table[i][i] = arr[i]
-        for j in range(i + 1, n):
-            max_table[i][j] = max(max_table[i][j - 1], arr[j])
+def longestDiverseString(a: int, b: int, c: int) -> str:
+    res = []
+    counts = {'a': a, 'b': b, 'c': c}
     
-    dp = [[0] * n for _ in range(n)]
-    for l in range(2, n + 1):
-        for i in range(n - l + 1):
-            j = i + l - 1
-            dp[i][j] = float('inf')
-            for k in range(i, j):
-                dp[i][j] = min(dp[i][j], dp[i][k] + dp[
+    while True:
+        # Check if all counts are zero
+        total = counts['a'] + counts['b'] + counts['c']
+        if total == 0:
+            break
+        
+        # Determine the last two characters in the result
+        last_char = res[-1] if res else ''
+        second_last_char = res[-2] if len(res) >= 2 else ''
+        
+        # Determine forbidden character if last two are 
