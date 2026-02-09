@@ -1,19 +1,24 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
+mod=10**9+7
 
-import builtins
-import re
+
+def main():
+    n, m = map(int, input().split())
+    if abs(n - m) > 1:
+        return 0
+
+
+    fact = 1
+    for i in range(1, min(n, m) + 1):
+        fact = fact * i % mod
+
+
+
+    if n == m:
+        return fact ** 2 * 2 % mod
+    else:
+        return fact * fact * (min(n, m) + 1) % mod
+
+
+
+
+print(main())
