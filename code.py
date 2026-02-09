@@ -1,14 +1,17 @@
-def getHappyString(n: int, k: int) -> str:
-    happy = []
-    
-    def backtrack(s):
-        if len(s) == n:
-            happy.append(s)
-            return
-        last_char = s[-1] if s else ''
-        for c in ['a', 'b', 'c']:
-            if c != last_char:
-                backtrack(s + c)
-    
-    backtrack('')
-    return happy[k-1] if k <= len(happy) else ''
+def checkValidString(s):
+    low = 0
+    high = 0
+    for c in s:
+        if c == '(':
+            low += 1
+            high += 1
+        elif c == ')':
+            low -= 1
+            high -= 1
+        else:
+            low -= 1
+            high += 1
+        if high < 0:
+            return False
+        low = max(low, 0)
+    return low == 0
