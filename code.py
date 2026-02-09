@@ -1,20 +1,17 @@
-import sys
+H, W = map(int, input().split())
+A = [list(map(int, input().split())) for _ in range(H)]
+B = [list(map(int, input().split())) for _ in range(H)]
+h, w = map(int, input().split())
+C = [list(map(int, input().split())) for _ in range(h)]
 
-for line in sys.stdin:
-    line = line.strip()
-    if line == '0':
-        break
-    n = int(line)
-    totals = {}
-    order = []
-    for _ in range(n):
-        parts = sys.stdin.readline().strip().split()
-        i, p, q = parts[0], int(parts[1]), int(parts[2])
-        amount = p * q
-        if i not in totals:
-            totals[i] = 0
-            order.append(i)
-        totals[i] += amount
-    result = [emp_id for emp_id in order if totals[emp_id] >= 1000000]
-    if not result:
-  
+max_sum = None
+
+for i in range(H - h + 1):
+    for j in range(W - w + 1):
+        match = True
+        for di in range(h):
+            if not match:
+                break
+            for dj in range(w):
+                if B[i + di][j + dj] != C[di][dj]:
+           
