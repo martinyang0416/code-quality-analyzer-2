@@ -1,14 +1,15 @@
-def minSwap(A, B):
-    n = len(A)
-    swap, noswap = 1, 0
-    for i in range(1, n):
-        new_swap = float('inf')
-        new_noswap = float('inf')
-        # Transition from previous not swapped
-        if A[i] > A[i-1] and B[i] > B[i-1]:
-            new_noswap = min(new_noswap, noswap)
-        if B[i] > A[i-1] and A[i] > B[i-1]:
-            new_swap = min(new_swap, noswap + 1)
-        # Transition from previous swapped
-        if A[i] > B[i-1] and B[i] > A[i-1]:
-            new_noswap = min(n
+def findTheLongestSubstring(s: str) -> int:
+    vowel_map = {'a': 0, 'e': 1, 'i': 2, 'o': 3, 'u': 4}
+    first_occurrence = {0: -1}
+    mask = 0
+    max_len = 0
+    for i, char in enumerate(s):
+        if char in vowel_map:
+            mask ^= 1 << vowel_map[char]
+        if mask in first_occurrence:
+            current_len = i - first_occurrence[mask]
+            if current_len > max_len:
+                max_len = current_len
+        else:
+            first_occurrence[mask] = i
+    return max_l
