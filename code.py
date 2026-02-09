@@ -1,8 +1,11 @@
-def maxIncreaseKeepingSkyline(grid):
-    row_max = [max(row) for row in grid]
-    col_max = [max(col) for col in zip(*grid)]
-    total = 0
-    for i in range(len(grid)):
-        for j in range(len(grid[0])):
-            total += min(row_max[i], col_max[j]) - grid[i][j]
-    return total
+def num_rescue_boats(people, limit):
+    people.sort()
+    left = 0
+    right = len(people) - 1
+    boats = 0
+    while left <= right:
+        if people[left] + people[right] <= limit:
+            left += 1
+        right -= 1
+        boats += 1
+    return boats
