@@ -1,12 +1,20 @@
 n = int(input())
-a = list(map(int, input().split()))
-prefix = [0]
-for num in a:
-    prefix.append(prefix[-1] + num)
-result = []
-for k in range(1, n + 1):
-    sum_first = prefix[k]
-    sum_last = prefix[n] - prefix[n - k]
-    if sum_first == sum_last:
-        result.append(str(k))
-print(' '.join(result))
+grid = [input().strip() for _ in range(n)]
+count = 0
+
+for A in range(n):
+    # Rotate each row by A positions to the right
+    rotated = []
+    for row in grid:
+        if A == 0:
+            rotated_row = row
+        else:
+            rotated_row = row[-A:] + row[:-A]
+        rotated.append(rotated_row)
+    
+    # Check if the rotated grid is symmetric
+    symmetric = True
+    for i in range(n):
+        for j in range(n):
+            if rotated[i][j] != rotated[j][i]:
+         
