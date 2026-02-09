@@ -1,19 +1,17 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
 import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
-
-import builtins
-import re
+from math import factorial
+def comb(n,r):
+    return factorial(n)//factorial(n-r)//factorial(r)
+n,a,b=map(int,input().split())
+v=list(map(int,input().split()))
+v.sort(reverse=True)
+c=collections.Counter(v)
+k=min(v[:a])
+if c[max(v)]<a:
+    ans=comb(c[k],v[:a].count(k))
+else:
+    ans=0
+    for i in range(a,min(b,c[k])+1):
+        ans+=comb(c[k],i)
+print(sum(v[:a])/a)
+print(ans)
