@@ -1,22 +1,19 @@
-def putaway(A, B, T, X, Y, W, S):
-    if T == 0:
-        return 0
-    
-    max_x = 0
-    if A > 0:
-        max_x = max(X)
-    max_y = 0
-    if B > 0:
-        max_y = max(Y)
-    
-    C1 = 0  # can only be handled by weak
-    C2 = 0  # can only be handled by small
-    C3 = 0  # can be handled by both or either
-    possible = True
-    
-    for i in range(T):
-        is_weak = (W[i] < max_x)
-        is_small = (S[i] < max_y)
+import sys
+from collections import deque
+
+class Dinic:
+    def __init__(self, n):
+        self.size = n
+        self.graph = [[] for _ in range(n)]
         
-        if not is_weak and not is_small:
-            possible = Fa
+    def add_edge(self, fr, to, cap):
+        forward = [to, len(self.graph[to]), cap]
+        backward = [fr, len(self.graph[fr]), 0]
+        self.graph[fr].append(forward)
+        self.graph[to].append(backward)
+        
+    def bfs_level(self, s, t, level):
+        q = deque()
+        level[:] = [-1] * self.size
+        level[s] = 0
+      
