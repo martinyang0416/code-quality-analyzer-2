@@ -1,20 +1,20 @@
-n = int(input())
-events = []
-for _ in range(n):
-    s, d = map(int, input().split())
-    end = s + d
-    events.append((s, 0))   # 0 represents start event
-    events.append((end, 1)) # 1 represents end event
+import bisect
 
-# Sort the events by time, and for same time, start events come before end events
-events.sort(key=lambda x: (x[0], x[1]))
-
-current = 0
-max_current = 0
-
-for time, typ in events:
-    if typ == 0:
-        current += 1
-        if current > max_current:
-            max_current = current
-    els
+def main():
+    import sys
+    m, V = map(int, sys.stdin.readline().split())
+    E = list(map(int, sys.stdin.readline().split()))
+    max_efficiency = -1.0
+    
+    for p in range(m - 2):
+        target = E[p] + V
+        r = bisect.bisect_right(E, target) - 1
+        
+        if r >= p + 2:
+            numerator = E[r] - E[p + 1]
+            denominator = E[r] - E[p]
+            
+            if denominator == 0:
+                continue
+            
+            efficiency = numer
