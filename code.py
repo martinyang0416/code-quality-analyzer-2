@@ -1,17 +1,19 @@
-n, k = map(int, input().split())
-s = list(map(int, input().split()))
-
-prefix = [0] * (n + 1)
-for i in range(n):
-    prefix[i + 1] = prefix[i] + s[i]
-
-max_avg = 0.0
-
-for L in range(k, n + 1):
-    for i in range(n - L + 1):
-        total = prefix[i + L] - prefix[i]
-        avg = total / L
-        if avg > max_avg:
-            max_avg = avg
-
-print("{0:.15f}".format(max_avg))
+def determine_holder():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        N = int(input[idx])
+        ID = int(input[idx + 1])
+        idx += 2
+        current = ID
+        last_passer = None
+        for _ in range(N):
+            cmd = input[idx]
+            if cmd == 'P':
+                # Process P command
+                new_id = int(input[idx + 1])
+                idx += 2
+                last_passer = current
