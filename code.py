@@ -1,21 +1,15 @@
-import sys
-
-def decode_caesar(line):
-    result = []
-    n = 0
-    for c in line:
-        if c.isalpha():
-            encrypted_pos = ord(c) - ord('a')
-            shift = (n + 1) % 26
-            original_pos = (encrypted_pos - shift) % 26
-            result.append(chr(original_pos + ord('a')))
-        else:
-            result.append(c)
-        n += 1
-    return ''.join(result)
-
 def main():
-    for line in sys.stdin:
-        line = line.rstrip('\n')
-        decoded_line = decode_caesar(line)
-  
+    import sys
+    input = sys.stdin.read().split()
+    T = int(input[0])
+    for i in range(1, T+1):
+        S = input[i]
+        reversed_S = S[::-1]
+        count = 0
+        for a, b in zip(S, reversed_S):
+            if a != b:
+                count += 1
+        print(count // 2)
+
+if __name__ == "__main__":
+    main()
