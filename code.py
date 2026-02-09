@@ -1,24 +1,22 @@
-n, m, k = map(int, input().split())
-p = list(map(int, input().split()))
+n = int(input())
+a = list(map(int, input().split()))
+t = list(map(int, input().split()))
 
-shift = 0
-operations = 0
-i = 0
+categories = sorted(zip(t, a), key=lambda x: (-x[0], x[1]))
+parent = {}
 
-while i < m:
-    current_p = p[i] - shift
-    current_page = (current_p - 1) // k
-    upper_bound = (current_page + 1) * k + shift
-    
-    low = i
-    high = m - 1
-    best = i - 1
-    while low <= high:
-        mid = (low + high) // 2
-        if p[mid] <= upper_bound:
-            best = mid
-            low = mid + 1
-        else:
-            high = mid - 1
-    j = best + 1
-    operations +=
+def find(x):
+    if x not in parent:
+        return x
+    root = x
+    while root in parent:
+        root = parent[root]
+    current = x
+    while current in parent and parent[current] != root:
+        next_node = parent[current]
+        parent[current] = root
+        current = next_node
+    return root
+
+total = 0
+for ti, ai in categor
