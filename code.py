@@ -1,17 +1,23 @@
-def main():
-    import sys
-    f0_str = "What are you doing at the end of the world? Are you busy? Will you save us?"
-    prefix_str = "What are you doing while sending \""
-    s1_str = "\"? Are you busy? Will you send \""
-    s2_str = "\"?"
+import bisect
+
+def putaway(A, B, T, X, Y, W, S):
+    # Sort the X and Y arrays to facilitate binary search
+    X_sorted = sorted(X)
+    Y_sorted = sorted(Y)
     
-    q = int(sys.stdin.readline())
-    res = []
+    only_weak = 0
+    only_small = 0
+    both = 0
     
-    for _ in range(q):
-        n, k = map(int, sys.stdin.readline().split())
-        if n == 0:
-            if k > len(f0_str):
-                res.append('.')
-            else:
-                res.app
+    for i in range(T):
+        w = W[i]
+        s = S[i]
+        
+        # Determine can_weak
+        can_weak = False
+        if A > 0:
+            idx = bisect.bisect_right(X_sorted, w)
+            if idx < len(X_sorted):
+                can_weak = True
+        else:
+            
