@@ -1,24 +1,21 @@
 import sys
-import math
-
-MOD = 10**9 + 7
 
 def main():
-    N, M = map(int, sys.stdin.readline().split())
-    ratings = []
-    for _ in range(M):
+    sys.setrecursionlimit(1 << 25)
+    C, N = map(int, sys.stdin.readline().split())
+    masks = []
+    for _ in range(N):
         s = sys.stdin.readline().strip()
-        ratings.append(s)
+        mask = 0
+        for i in range(C):
+            bit = 1 if s[i] == 'H' else 0
+            mask |= bit << (C - 1 - i)
+        masks.append(mask)
     
-    # Create bitmask for each problem
-    bitmask = []
-    for i in range(N):
-        bm = 0
-        for j in range(M):
-            if ratings[j][i] == 'H':
-                bm |= 1 << j
-        bitmask.append(bm)
-    
-    # Group by bitmask
     from collections import defaultdict
-    
+    count = defaultdict(int)
+    for m in masks:
+        count[m] += 1
+
+    class Node:
+        __slots__ = ['child
