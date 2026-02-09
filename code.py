@@ -1,15 +1,16 @@
-T = int(input())
-for _ in range(T):
-    n_activities, origin = input().split()
-    n_activities = int(n_activities)
-    total = 0
-    for _ in range(n_activities):
-        activity = input().split()
-        if activity[0] == 'CONTEST_WON':
-            rank = int(activity[1])
-            bonus = max(0, 20 - rank)
-            total += 300 + bonus
-        elif activity[0] == 'TOP_CONTRIBUTOR':
-            total += 300
-        elif activity[0] == 'BUG_FOUND':
-            severity = int(activity[1])
+import sys
+
+def main():
+    t = int(sys.stdin.readline())
+    for _ in range(t):
+        n = int(sys.stdin.readline())
+        for _ in range(n-1):
+            sys.stdin.readline()  # skip edges
+        k1 = int(sys.stdin.readline())
+        x_list = list(map(int, sys.stdin.readline().split()))
+        k2 = int(sys.stdin.readline())
+        y_list = list(map(int, sys.stdin.readline().split()))
+        y_set = set(y_list)
+        found = False
+        
+        # Check up to 3 nodes from my subtre
