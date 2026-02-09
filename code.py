@@ -1,19 +1,20 @@
-def main():
-    import sys
-    N = int(sys.stdin.readline())
-    temperatures = list(map(int, sys.stdin.readline().split()))
-    D = int(sys.stdin.readline())
-    
-    temperatures.sort()
-    max_len = 0
-    left = 0
-    for right in range(N):
-        while temperatures[right] - temperatures[left] > D:
-            left += 1
-        current_len = right - left + 1
-        if current_len > max_len:
-            max_len = current_len
-    print(N - max_len)
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(n**0.5) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
 
-if __name__ == "__main__":
-    main()
+Y = int(input())
+current = Y if Y % 2 == 1 else Y + 1
+
+while True:
+    if is_prime(current):
+        print(current)
+        break
+    current += 2
