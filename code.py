@@ -1,11 +1,11 @@
-def countNumbersWithUniqueDigits(n):
-    if n == 0:
-        return 1
-    total = 10
-    current = 9
-    available = 9
-    for k in range(2, min(n, 10) + 1):
-        current *= available
-        total += current
-        available -= 1
-    return total
+def smallestDivisor(nums, threshold):
+    low = 1
+    high = max(nums)
+    while low < high:
+        mid = (low + high) // 2
+        total = sum((num + mid - 1) // mid for num in nums)
+        if total > threshold:
+            low = mid + 1
+        else:
+            high = mid
+    return low
