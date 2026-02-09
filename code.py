@@ -1,22 +1,21 @@
 import sys
 
-class TrieNode:
-    __slots__ = ['children']
-    def __init__(self):
-        self.children = [None, None]
-
 def main():
     C, N = map(int, sys.stdin.readline().split())
+    all_ones = (1 << C) - 1
     masks = []
+    mask_set = set()
+
     for _ in range(N):
         s = sys.stdin.readline().strip()
         mask = 0
         for c in s:
-            mask = (mask << 1) | (1 if c == 'H' else 0)
+            mask <<= 1
+            if c == 'H':
+                mask |= 1
         masks.append(mask)
+        mask_set.add(mask)
     
-    # Build the trie
-    root = TrieNode()
-    for mask in masks:
-        current = root
-        for bit_pos in rev
+    # Precompute the popcount for all masks in the set
+    # Not needed here, but might help
+    # Precompute all possible cand
