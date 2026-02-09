@@ -1,22 +1,22 @@
-from functools import lru_cache
-
-def soupServings(n):
-    if n == 0:
-        return 0.5
-    if n >= 4800:
-        return 1.0
-    ops = [(100, 0), (75, 25), (50, 50), (25, 75)]
+def minDays(bloomDay, m, k):
+    if m * k > len(bloomDay):
+        return -1
     
-    @lru_cache(maxsize=None)
-    def dp(a, b):
-        if a <= 0 and b <= 0:
-            return 0.5
-        if a <= 0:
-            return 1.0
-        if b <= 0:
-            return 0.0
-        probability = 0.0
-        for da, db in ops:
-            probability += 0.25 * dp(a - da, b - db)
-        return probability
-  
+    left, right = min(bloomDay), max(bloomDay)
+    ans = -1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        current = 0
+        bouquets = 0
+        
+        for day in bloomDay:
+            if day <= mid:
+                current += 1
+                if current == k:
+                    bouquets += 1
+                    current = 0
+            else:
+                current = 0
+        
+     
