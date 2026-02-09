@@ -1,5 +1,8 @@
-import math
+# Read the input values
+A, B, C = map(int, input().split())
 
-R = int(input())
-circumference = 2 * math.pi * R
-print("{0:.20f}".format(circumference))
+# Check if the sum of A and B is at least C
+if A + B >= C:
+    print("Yes")
+else:
+    print("No")
