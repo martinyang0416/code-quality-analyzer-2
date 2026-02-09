@@ -1,20 +1,20 @@
-def find132pattern(nums):
-    n = len(nums)
-    if n < 3:
-        return False
+from collections import deque
+from defaultdict import defaultdict
+
+def minJumps(arr):
+    n = len(arr)
+    if n == 1:
+        return 0
     
-    min_so_far = [0] * n
-    min_so_far[0] = nums[0]
-    current_min = nums[0]
+    # Create a dictionary to map each value to its indices
+    value_indices = defaultdict(list)
+    for i, num in enumerate(arr):
+        value_indices[num].append(i)
     
-    for j in range(1, n):
-        min_so_far[j] = current_min
-        if nums[j] < current_min:
-            current_min = nums[j]
+    visited = [False] * n
+    queue = deque([(0, 0)])
+    visited[0] = True
     
-    stack = []
-    for j in range(n-1, -1, -1):
-        if nums[j] > min_so_far[j]:
-            while stack and stack[-1] <= min_so_far[j]:
-                stack.pop()
-            if stack and stac
+    while queue:
+        current_idx, steps = queue.popleft()
+        # Check if we've reached the last in
