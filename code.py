@@ -1,24 +1,19 @@
-q=int(input())
-def check(t,a,b):
-    k=(2*a+t)//2
-    return k*(2*a+t-k)<a*b
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-for i in range(q):
-    a,b=sorted(map(int,input().split()))
-    if a==b or a==b-1:
-        print(2*a-2)
-        continue
-    l,r=1,b-a
-    while l+1<r:
-        t=(l+r)//2
-        if check(t,a,b):
-            l=t
-        else:
-            r=t
-    
-    if check(r,a,b):
-        print(2*a-2+r)
-    elif check(l,a,b):
-        print(2*a-2+l)
-    else:
-        print(2*a-1)
+import builtins
+import re
