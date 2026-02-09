@@ -1,25 +1,20 @@
-import sys
+import math
 
-MAX_VALUE_STR = '1000000000000'
-
-def is_valid_part(s_part):
-    if len(s_part) == 0:
-        return False
-    if len(s_part) > 13:
-        return False
-    if len(s_part) > 1 and s_part[0] == '0':
-        return False
-    if len(s_part) == 13:
-        return s_part == MAX_VALUE_STR
-    return True
-
-def part_to_num(s_part):
-    if len(s_part) == 13:
-        return 10**12
-    return int(s_part)
-
-def process_string(s):
-    L = len(s)
-    if L < 4:
-        return "unlucky"
-    max_sum = 
+n = int(input())
+for case in range(n):
+    X, Y = map(int, input().split())
+    log_x = math.log10(X)
+    lower = math.log10(Y)
+    upper = math.log10(Y + 1)
+    lower_frac = lower - math.floor(lower)
+    upper_frac = upper - math.floor(upper)
+    E = 0
+    while True:
+        E += 1
+        total = E * log_x
+        f = total - math.floor(total)
+        if lower_frac < upper_frac:
+            if lower_frac <= f < upper_frac:
+                break
+        else:
+            if f >= l
