@@ -1,14 +1,12 @@
-MOD = 10**9 + 7
+from collections import defaultdict
 
-def distinctSubseqCount(s: str) -> int:
-    n = len(s)
-    dp = [0] * (n + 1)
-    dp[0] = 1
-    last_occurrence = {}
-    for i in range(1, n + 1):
-        c = s[i-1]
-        dp[i] = (2 * dp[i-1]) % MOD
-        if c in last_occurrence:
-            dp[i] = (dp[i] - dp[last_occurrence[c] - 1]) % MOD
-        last_occurrence[c] = i
-    return (dp[n] - 1) % MOD
+def subarraysDivByK(A, K):
+    count_map = defaultdict(int)
+    count_map[0] = 1
+    prefix_mod = 0
+    result = 0
+    for num in A:
+        prefix_mod = (prefix_mod + num) % K
+        result += count_map[prefix_mod]
+        count_map[prefix_mod] += 1
+    return result
