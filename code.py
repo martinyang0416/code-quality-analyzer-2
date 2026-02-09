@@ -1,19 +1,14 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
+n = int(input())
+x = list(sorted(map(int, input().split())))
 
-import builtins
-import re
+
+def gcd(a, b):
+    while b > 0:
+        a, b = b, a % b
+    return a
+
+tgcd = x.pop(0)
+for i in x:
+    tgcd = gcd(tgcd, i)
+
+print(tgcd * n)
