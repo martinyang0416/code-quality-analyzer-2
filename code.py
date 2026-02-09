@@ -1,21 +1,19 @@
-n = int(input())
-arr = list(map(int, input().split()))
-
-if n < 2:
-    print(-1)
-else:
-    max_right = arr[-1]
-    max_product = -1
-    best_a = None
-    best_b = None
-
-    for i in range(n-2, -1, -1):
-        current = arr[i]
-        if current < max_right:
-            product = current * max_right
-            if product > max_product:
-                max_product = product
-                best_a = current
-                best_b = max_right
-        # Update max_right for next iteration
-        ma
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    T = int(input[0])
+    index = 1
+    for _ in range(T):
+        s = input[index]
+        index += 1
+        balance = 0
+        count_balances = {0: 1}
+        total = 0
+        for c in s:
+            if c == 'A':
+                balance += 1
+            else:
+                balance -= 1
+            # Get the current balance's count and add to total
+            total += count_balances.get(balance, 0)
+            # Update the co
