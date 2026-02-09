@@ -1,13 +1,20 @@
-import math
+k, n = map(int, input().split())
+stones = [tuple(map(int, input().split())) for _ in range(k)]
+monsters = [tuple(map(int, input().split())) for _ in range(n)]
 
-r, x, y, x_prime, y_prime = map(int, input().split())
-dx = x_prime - x
-dy = y_prime - y
-distance_sq = dx ** 2 + dy ** 2
+count = 0
 
-if distance_sq == 0:
-    print(0)
-else:
-    distance = math.sqrt(distance_sq)
-    steps = math.ceil(distance / (2 * r))
-    print(steps)
+for m in monsters:
+    mx, my = m
+    afraid = False
+    for t in stones:
+        tx, ty = t
+        dx = mx - tx
+        dy = my - ty
+        distance_sq_m = dx ** 2 + dy ** 2
+        blocked = False
+        for m_prime in monsters:
+            if m_prime == m:
+                continue
+            mpx, mpy = m_prime
+          
