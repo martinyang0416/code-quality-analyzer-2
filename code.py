@@ -1,16 +1,24 @@
+import bisect
+
 def putaway(A, B, T, X, Y, W, S):
-    # Check if each toy can be handled by at least one robot
+    can_weak = []
+    can_small = []
+    Wonly = 0
+    Sonly = 0
+    Both = 0
+    eligible_weak = []
+    eligible_small = []
+
     for i in range(T):
-        possible = False
-        # Check weak robots
-        if A > 0:
-            for x in X:
-                if W[i] < x:
-                    possible = True
-                    break
-        # Check small robots if not possible yet
-        if not possible and B > 0:
-            for y in Y:
-                if S[i] < y:
-                    possible = True
-                    bre
+        w = W[i]
+        s = S[i]
+        cw = any(x > w for x in X)
+        cs = any(y > s for y in Y)
+        if not cw and not cs:
+            return -1
+        can_weak.append(cw)
+        can_small.append(cs)
+        if cw and not cs:
+            Wonly += 1
+        elif cs and not cw:
+            
