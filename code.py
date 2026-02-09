@@ -1,21 +1,19 @@
-import math
-from typing import List
+from collections import deque
 
-class Solution:
-    def sumFourDivisors(self, nums: List[int]) -> int:
-        total = 0
-        for num in nums:
-            total += self.calculate_sum(num)
-        return total
+def canReach(arr, start):
+    if arr[start] == 0:
+        return True
+    n = len(arr)
+    visited = [False] * n
+    queue = deque([start])
+    visited[start] = True
     
-    def calculate_sum(self, n):
-        if n == 1:
-            return 0
-        sum_div = 0
-        count = 0
-        sqrt_n = int(math.sqrt(n))
-        for i in range(1, sqrt_n + 1):
-            if n % i == 0:
-                if i * i == n:
-                    sum_div += i
-   
+    while queue:
+        current = queue.popleft()
+        jump = arr[current]
+        for delta in (jump, -jump):
+            next_idx = current + delta
+            if 0 <= next_idx < n and not visited[next_idx]:
+                if arr[next_idx] == 0:
+                    return True
+             
