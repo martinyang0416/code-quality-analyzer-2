@@ -1,16 +1,23 @@
-n, m = map(int, input().split())
-degrees = [0] * (n + 1)
-for _ in range(m):
-    u, v = map(int, input().split())
-    degrees[u] += 1
-    degrees[v] += 1
-
-min_modifications = float('inf')
-
-for h in range(1, n + 1):
-    c = degrees[h]
-    mod = (n - 1) + m - 2 * c
-    if mod < min_modifications:
-        min_modifications = mod
-
-print(min_modifications)
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    while True:
+        n = int(input[ptr])
+        m = int(input[ptr+1])
+        ptr += 2
+        if n == 0 and m == 0:
+            break
+        vectors = []
+        for _ in range(n):
+            s = input[ptr]
+            ptr += 1
+            num = int(s, 2)
+            vectors.append(num)
+        # Compute S
+        S = 0
+        for num in vectors:
+            S ^= num
+        if S == 0:
+            print(n)
+      
