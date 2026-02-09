@@ -1,20 +1,20 @@
-import sys
+from collections import deque
 
-def main():
-    input = sys.stdin.read().split()
-    idx = 0
-    n = int(input[idx]); idx +=1
-    m = int(input[idx]); idx +=1
-    r = int(input[idx]); idx +=1
+n, m, k = map(int, input().split())
+grid = [list(input().strip()) for _ in range(n)]
 
-    # Precompute distance matrices for each car using Floyd-Warshall
-    dist = []
-    for _ in range(m):
-        d = []
-        for i in range(n):
-            row = list(map(int, input[idx:idx+n]))
-            idx +=n
-            d.append(row.copy())
-        # Floyd-Warshall
-        for k in range(n):
-            for i in ra
+# Find all empty cells and the starting cell
+start = None
+empty = []
+for i in range(n):
+    for j in range(m):
+        if grid[i][j] == '.':
+            empty.append((i, j))
+            if start is None:
+                start = (i, j)
+
+# BFS to build the spanning tree and children structure
+children = {}
+visited = [[False for _ in range(m)] for _ in range(n)]
+q = deque()
+i0, j0 = 
