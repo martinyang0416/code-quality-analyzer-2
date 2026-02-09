@@ -1,17 +1,17 @@
-def checkValidString(s):
-    low = 0
-    high = 0
-    for c in s:
-        if c == '(':
-            low += 1
-            high += 1
-        elif c == ')':
-            low -= 1
-            high -= 1
-        else:
-            low -= 1
-            high += 1
-        if high < 0:
-            return False
-        low = max(low, 0)
-    return low == 0
+def minChanges(s, k):
+    n = len(s)
+    # Precompute the cost matrix
+    cost = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(i, n):
+            left, right = i, j
+            current_cost = 0
+            while left < right:
+                if s[left] != s[right]:
+                    current_cost += 1
+                left += 1
+                right -= 1
+            cost[i][j] = current_cost
+    
+    # Initialize DP table
+    dp = [[float('inf')] * (k + 1) for _ in ra
