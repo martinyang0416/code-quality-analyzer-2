@@ -1,17 +1,24 @@
-t, m = map(int, input().split())
-allocated_blocks = []
-next_id = 1
+n, m, k = map(int, input().split())
+s = list(map(int, input().split()))
+a = list(map(int, input().split()))
 
-for _ in range(t):
-    parts = input().split()
-    if parts[0] == 'alloc':
-        n = int(parts[1])
-        gaps = []
-        prev_end = -1
-        for block in allocated_blocks:
-            current_start = block['start']
-            if current_start > prev_end + 1:
-                gaps.append((prev_end + 1, current_start - 1))
-            prev_end = block['start'] + block['size'] - 1
-        if prev_end < m - 1:
-            ga
+blocked_ptr = 0
+available = []
+for x in range(n):
+    if blocked_ptr < m and x == s[blocked_ptr]:
+        blocked_ptr += 1
+    else:
+        available.append(x)
+
+if not available:
+    print(-1)
+else:
+    min_cost = float('inf')
+    import bisect
+    for l in range(1, k+1):
+        current = 0
+        cnt = 0
+        possible = True
+        prev_current = -1
+        while current < n:
+    
