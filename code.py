@@ -1,22 +1,13 @@
-import heapq
-from collections import defaultdict
+import math
 
-n, m = map(int, input().split())
-adj = [[] for _ in range(n + 1)]  # 1-based indexing for nodes
+r, x, y, x_prime, y_prime = map(int, input().split())
+dx = x_prime - x
+dy = y_prime - y
+distance_sq = dx ** 2 + dy ** 2
 
-for _ in range(m):
-    a, b, l, r = map(int, input().split())
-    adj[a].append((b, l, r))
-    adj[b].append((a, l, r))
-
-heap = []
-# Initialize with edges from node 1
-for v, l, r in adj[1]:
-    if l <= r:
-        heapq.heappush(heap, (-(r - l + 1), l, r, v))
-
-intervals = defaultdict(list)
-found = False
-
-while heap:
-    neg_len, L, R, u = heapq.heappop
+if distance_sq == 0:
+    print(0)
+else:
+    distance = math.sqrt(distance_sq)
+    steps = math.ceil(distance / (2 * r))
+    print(steps)
