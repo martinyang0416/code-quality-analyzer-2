@@ -1,19 +1,15 @@
-from collections import deque
+def shortestSuperstring(A):
+    n = len(A)
+    # Compute overlap[i][j] = maximum suffix of A[i] matching prefix of A[j]
+    overlap = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            if i != j:
+                max_ov = 0
+                for k in range(min(len(A[i]), len(A[j])), 0, -1):
+                    if A[i].endswith(A[j][:k]):
+                        max_ov = k
+                        break
+                overlap[i][j] = max_ov
 
-def minFlips(mat):
-    m, n = len(mat), len(mat[0])
-    target = tuple(tuple(0 for _ in row) for row in mat)
-    initial = tuple(tuple(row) for row in mat)
-    if initial == target:
-        return 0
-    
-    visited = set()
-    visited.add(initial)
-    q = deque([(initial, 0)])
-    
-    while q:
-        current, steps = q.popleft()
-        for i in range(m):
-            for j in range(n):
-                new_mat = [list(row) for row in current]
-                new_
+    # DP[mask][i] =
