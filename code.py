@@ -1,24 +1,21 @@
-import math
-
 def main():
     import sys
     input = sys.stdin.read().split()
-    idx = 0
-    n = int(input[idx])
-    idx += 1
-    angles = []
-    for _ in range(n):
-        x = float(input[idx])
-        y = float(input[idx + 1])
-        idx += 2
-        rad = math.atan2(y, x)
-        deg = math.degrees(rad)
-        if deg < 0:
-            deg += 360.0
-        angles.append(deg)
-    
-    angles.sort()
-    max_gap = 0.0
-    for i in range(n - 1):
-        gap = angles[i + 1] - angles[i]
-        if 
+    N = int(input[0])
+    idx = 1
+    result = []
+
+    for _ in range(N):
+        a = int(input[idx])
+        b = int(input[idx+1])
+        c = int(input[idx+2])
+        d = int(input[idx+3])
+        e = int(input[idx+4])
+        idx +=5
+
+        # Convert a, b, c each to 2-bit binary
+        def num_to_2bit(n):
+            return format(n, '02b')
+
+        first_part = num_to_2bit(a) + num_to_2bit(b) + num_to_2bit(c)
+        second_
