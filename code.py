@@ -1,20 +1,16 @@
 import sys
-from collections import deque
 
 def main():
     sys.setrecursionlimit(1 << 25)
     N = int(sys.stdin.readline())
-    s = sys.stdin.readline().strip()
-    edges = [[] for _ in range(N+1)]
-    for _ in range(N-1):
-        a, b = map(int, sys.stdin.readline().split())
-        edges[a].append(b)
-        edges[b].append(a)
+    a = list(map(int, sys.stdin.readline().split()))
+    prefix = [0] * (N + 1)
+    for i in range(N):
+        prefix[i + 1] = prefix[i] + a[i]
 
-    # Collect Cowflix nodes
-    cow_nodes = []
-    for i in range(1, N+1):
-        if s[i-1] == '1':
-            cow_nodes.append(i)
-    M = len(cow_nodes)
-    if M == 0
+    for i in range(N):
+        # Compute S_in_sums: subarrays including i (0-based)
+        S_in = [prefix[r + 1] - prefix[l] for l in range(i + 1) for r in range(i, N)]
+        
+        # Compute S_out_sums: subarrays not including i
+        part1 = []  # subar
