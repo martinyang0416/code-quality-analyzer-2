@@ -1,18 +1,27 @@
-def compute(s):
-    target = 'bessie'
-    n = len(s)
-    m = len(target)
-    completions = []
-    dp = [-1] * (m + 1)  # dp[0] is initialized to -1 (start), others to INF
+import sys
+from collections import deque
 
-    # Initialize dp for target sequence
-    for i in range(1, m + 1):
-        dp[i] = float('inf')
+def string_to_int(s):
+    res = 0
+    for i in range(len(s)):
+        if s[i] == '1':
+            res += (1 << i)
+    return res
 
-    current_start = 0  # start of the current "bessie" being tracked
+def rotate_right(s, n):
+    if n == 0:
+        return s
+    last_bit = (s >> (n-1)) & 1
+    rotated = (s << 1) % (1 << n) | last_bit
+    return rotated
 
-    for i in range(n):
-        c = s[i]
-        # Update dp in reverse to prevent overwriting before checking
-        for j in range(m, 0, -1):
-            if
+def solve():
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    N = int(input[idx])
+    idx += 1
+    
+    for _ in range(T):
+        lig
