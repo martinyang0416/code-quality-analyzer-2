@@ -1,20 +1,23 @@
-def is_prime(n):
-    if n <= 1:
-        return False
-    if n == 2:
-        return True
-    if n % 2 == 0:
-        return False
-    for i in range(3, int(n**0.5) + 1, 2):
-        if n % i == 0:
-            return False
-    return True
+import sys
 
-Y = int(input())
-current = Y if Y % 2 == 1 else Y + 1
+def readints():
+    return list(map(int, sys.stdin.readline().split()))
 
-while True:
-    if is_prime(current):
-        print(current)
-        break
-    current += 2
+def are_colinear_and_share_endpoint(seg1, seg2):
+    points1 = seg1
+    points2 = seg2
+
+    common = None
+    for p1 in points1:
+        for p2 in points2:
+            if p1 == p2:
+                common = p1
+                break
+        if common is not None:
+            break
+
+    if common is None:
+        return None  # No common endpoint
+
+    # Now, check if other points are colinear
+    # Get the other po
