@@ -1,14 +1,11 @@
-def isSubsequence(s: str, t: str) -> bool:
-    ptr = 0
-    len_t = len(t)
-    for char in s:
-        found = False
-        while ptr < len_t:
-            if t[ptr] == char:
-                ptr += 1
-                found = True
-                break
-            ptr += 1
-        if not found:
+import collections
+
+class Solution:
+    def canConstruct(self, s: str, k: int) -> bool:
+        n = len(s)
+        if k > n:
             return False
-    return True
+        counts = collections.Counter(s)
+        odds = sum(1 for v in counts.values() if v % 2 != 0)
+        min_k = max(1, odds) if odds else 1
+        return k >= min_k
