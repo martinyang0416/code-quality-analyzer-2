@@ -1,12 +1,19 @@
-a = list(map(int, input().split()))
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-def check(a):
-    a = a[:]
-    x = a[0]
-    a[0] = 0
-    for i in range(1, 14):
-        a[i] += max(0, (x+14-i) // 14)
-    a[0] = max(0, x // 14)
-    return sum((x if x % 2 == 0 else 0 for x in a))
-
-print(max((check(a[i:] + a[:i]) for i in range(14) if a[i] > 0)))
+import builtins
+import re
