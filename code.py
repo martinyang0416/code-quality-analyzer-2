@@ -1,22 +1,18 @@
-MOD = 10**9 + 7
-
 def main():
     import sys
     input = sys.stdin.read().split()
     T = int(input[0])
-    test_cases = list(map(int, input[1:T+1]))
-    if not test_cases:
-        return
-    max_Ti = max(test_cases)
-    
-    # Precompute a and b arrays
-    max_a = max_Ti
-    a = [0] * (max_a + 1)
-    if max_a >= 0:
-        a[0] = 1
-    if max_a >= 1:
-        a[1] = 0
-    if max_a >= 2:
-        a[2] = (a[1] + a[0] + 1) % MOD
-    for ti in range(3, max_a + 1):
-        a[ti] = (a[ti-1] + a[ti-2] + 
+    idx = 1
+    for _ in range(T):
+        N = int(input[idx])
+        k = int(input[idx+1])
+        idx +=2
+        x = k +1
+        count =0
+        while x % 2 ==0:
+            count +=1
+            x = x //2
+        print("ON" if count >= N else "OFF")
+
+if __name__ == "__main__":
+    main()
