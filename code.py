@@ -1,21 +1,17 @@
 import sys
-import bisect
-import numpy as np
 
 def main():
-    n = int(sys.stdin.readline())
+    N = int(sys.stdin.readline())
     a = list(map(int, sys.stdin.readline().split()))
-
-    prefix = [0] * (n + 1)
-    for i in range(n):
-        prefix[i + 1] = prefix[i] + a[i]
-
-    all_subarrays = []
-    all_sums = []
-    for start in range(n + 1):
-        for end in range(start + 1, n + 1):
-            s = prefix[end] - prefix[start]
-            all_subarrays.append((start, end, s))
-            all_sums.append(s)
-
-    for i in range(n)
+    prefix = [0] * (N + 1)
+    for i in range(1, N+1):
+        prefix[i] = prefix[i-1] + a[i-1]
+    
+    for i in range(1, N+1):
+        min_delta = float('inf')
+        start_l = max(1, i - 2)
+        end_l = min(N, i + 2)
+        # Iterate over all small subarrays in the window [start_l, end_l]
+        for l in range(start_l, end_l + 1):
+            for r in range(l, end_l + 1):
+     
