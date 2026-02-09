@@ -1,24 +1,11 @@
-def can_separate(blue_x, red_x):
-    max_blue = max(blue_x)
-    min_red = min(red_x)
-    
-    if max_blue < min_red:
-        return True
-    else:
-        max_red = max(red_x)
-        min_blue = min(blue_x)
-        if max_red < min_blue:
-            return True
-    return False
+# Read the list of integers from the first input line
+numbers = list(map(int, input().split()))
 
-# Read input
-import sys
+# Read the index and the new value from the second input line
+i, x = map(int, input().split())
 
-def main():
-    for line in sys.stdin:
-        line = line.strip()
-        if not line:
-            continue
-        parts = list(map(int, line.split()))
-        if len(parts) == 0:
-            c
+# Update the list at the specified index
+numbers[i] = x
+
+# Print the modified list
+print(numbers)
