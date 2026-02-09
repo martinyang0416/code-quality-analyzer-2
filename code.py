@@ -1,4 +1,3 @@
 import math
-
 a = int(input())
-print(math.isqrt(a))
+print(int(math.sqrt(a)))
