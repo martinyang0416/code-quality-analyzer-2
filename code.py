@@ -1,16 +1,26 @@
-import sys
+import math
 
-def main():
-    t = int(sys.stdin.readline())
-    for _ in range(t):
-        n = int(sys.stdin.readline())
-        for _ in range(n-1):
-            sys.stdin.readline()  # skip edges
-        k1 = int(sys.stdin.readline())
-        x_list = list(map(int, sys.stdin.readline().split()))
-        k2 = int(sys.stdin.readline())
-        y_list = list(map(int, sys.stdin.readline().split()))
-        y_set = set(y_list)
-        found = False
-        
-        # Check up to 3 nodes from my subtre
+x = int(input())
+
+if x == 1:
+    print(1, 1)
+else:
+    def factorize(n):
+        factors = {}
+        while n % 2 == 0:
+            factors[2] = factors.get(2, 0) + 1
+            n = n // 2
+        i = 3
+        while i * i <= n:
+            while n % i == 0:
+                factors[i] = factors.get(i, 0) + 1
+                n = n // i
+            i += 2
+        if n > 1:
+            factors[n] = 1
+        return factors
+
+    factors = factorize(x)
+    
+    divisors = [1]
+    for p 
