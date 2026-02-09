@@ -1,21 +1,24 @@
-from collections import deque
-
-def min_operations_to_bab(s):
-    if s == "BAB":
-        return 0
-    visited = set()
-    queue = deque()
-    queue.append((s, 0))
-    visited.add(s)
+def can_separate(blue_x, red_x):
+    max_blue = max(blue_x)
+    min_red = min(red_x)
     
-    while queue:
-        current, steps = queue.popleft()
-        
-        # Generate all possible next states
-        next_states = []
-        
-        # Replace first character if possible
-        if len(current) >= 1:
-            if current[0] == 'A':
-                new_str = 'B' + current[1:]
-            els
+    if max_blue < min_red:
+        return True
+    else:
+        max_red = max(red_x)
+        min_blue = min(blue_x)
+        if max_red < min_blue:
+            return True
+    return False
+
+# Read input
+import sys
+
+def main():
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+        parts = list(map(int, line.split()))
+        if len(parts) == 0:
+            c
