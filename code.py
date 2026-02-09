@@ -1,24 +1,21 @@
-import sys
+n = int(input())
+health = list(map(int, input().split()))
+P = int(input())
 
-def main():
-    input = sys.stdin.read
-    data = input().split()
-    T = int(data[0])
-    idx = 1
-    for _ in range(T):
-        N = int(data[idx])
-        S = int(data[idx+1])
-        idx += 2
-        if N == 1:
-            print(S)
-        else:
-            if S < 2 or S > 9 * N:
-                print(-1)
-            else:
-                if N >= 3:
-                    print(0)
-                else:
-                    print(S - 1)
-                    
-if __name__ == "__main__":
- 
+health_sorted = sorted(health)
+sum_initial = 0
+m = 0
+for h in health_sorted:
+    if sum_initial + h > P:
+        break
+    sum_initial += h
+    m += 1
+remaining_energy = P - sum_initial
+remaining_candidates = health_sorted[m:]
+max_total = 0
+
+max_k = min(m, len(remaining_candidates))
+for k in range(0, max_k + 1):
+    if k > len(remaining_candidates):
+        continue
+    sum_action2 = sum(remaining_candidates[-k:]) if k >
