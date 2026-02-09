@@ -1,27 +1,22 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    M = int(input[idx])
-    idx += 1
-    L = int(input[idx])
-    idx += 1
+def find_kth_smallest(n, m, k):
+    def count(mid):
+        total = 0
+        x = mid // m
+        total += x * m
+        i = x + 1
+        while i <= n:
+            q = mid // i
+            if q == 0:
+                break
+            max_i = mid // q
+            if max_i > n:
+                max_i = n
+            total += q * (max_i - i + 1)
+            i = max_i + 1
+        return total
     
-    intervals = []
-    for _ in range(L):
-        p = int(input[idx])
-        idx +=1
-        q = int(input[idx])
-        idx +=1
-        if p > q:
-            p, q = q, p
-        intervals.append((p, q-1))
-    
-    if not intervals:
-        print(1)
-        return
-    
-    intervals.sort(key=lambda x: x[1])
-    
-    splits = []
-    current_en
+    low = 1
+    high = n * m
+    while low < high:
+        mid = (low + high) // 2
+        if count(mi
