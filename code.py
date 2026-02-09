@@ -1,23 +1,20 @@
-n, K = map(int, input().split())
-a = list(map(int, input().split()))
-a.sort()
+def previous_permutation(arr):
+    n = len(arr)
+    k = n - 2
+    while k >= 0 and arr[k] <= arr[k + 1]:
+        k -= 1
+    if k == -1:
+        return arr
+    l = n - 1
+    while arr[l] >= arr[k]:
+        l -= 1
+    arr[k], arr[l] = arr[l], arr[k]
+    arr[k + 1:] = arr[k + 1:][::-1]
+    return arr
 
-count = 0
-for i in range(n):
-    left = i + 1
-    right = n - 1
-    res = -1
-    target = a[i] + K
-    while left <= right:
-        mid = (left + right) // 2
-        if a[mid] > a[i] and a[mid] <= target:
-            res = mid
-            right = mid - 1
-        elif a[mid] > target:
-            right = mid - 1
-        else:
-            left = mid + 1
-    if res != -1:
-        count += 1
-
-print(n - count)
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    arr = list(map(int, input().split()))
+    result = previous_permutation(arr)
+    print(' '.join(map(str, result)))
