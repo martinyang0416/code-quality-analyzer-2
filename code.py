@@ -1,17 +1,16 @@
-def generate_string(A, B):
-    result = []
-    while A > 0 or B > 0:
-        if len(result) >= 2 and result[-1] == result[-2]:
-            last_char = result[-1]
-            if last_char == 'a':
-                if B == 0:
-                    result.append('a')
-                    A -= 1
-                else:
-                    result.append('b')
-                    B -= 1
-            else:
-                if A == 0:
-                    result.append('b')
-                    B -= 1
-             
+import bisect
+
+def jobScheduling(startTime, endTime, profit):
+    jobs = sorted(zip(startTime, endTime, profit), key=lambda x: x[1])
+    end_times = []
+    dp = []
+    for s, e, p in jobs:
+        idx = bisect.bisect_right(end_times, s) - 1
+        current = p
+        if idx >= 0:
+            current += dp[idx]
+        if dp:
+            current = max(current, dp[-1])
+        dp.append(current)
+        end_times.append(e)
+    return dp[-1] if dp else 0
