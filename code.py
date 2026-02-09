@@ -1,10 +1,6 @@
-presidents = [
-    "Washington", "Adams", "Jefferson", "Madison", "Monroe", "Adams", "Jackson",
-    "Van Buren", "Harrison", "Tyler", "Polk", "Taylor", "Fillmore", "Pierce",
-    "Buchanan", "Lincoln", "Johnson", "Grant", "Hayes", "Garfield", "Arthur",
-    "Cleveland", "Harrison", "Cleveland", "McKinley", "Roosevelt", "Taft", "Wilson",
-    "Harding", "Coolidge", "Hoover", "Roosevelt", "Truman", "Eisenhower", "Kennedy",
-    "Johnson", "Nixon", "Ford", "Carter", "Reagan"
-]
 a = int(input())
-print(pr
+e = a.bit_length() - 1
+if (2 ** e) == a:
+    print(e)
+else:
+    print(e + 1)
