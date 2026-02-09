@@ -1,18 +1,26 @@
-import sys
+import heapq
+
+def compute_g(s):
+    mod = 10**9 + 7
+    b = 100001
+    l = len(s)
+    res = 0
+    for i in range(l):
+        char_val = ord(s[i])
+        exponent = l - (i + 1)
+        power = pow(b, exponent, mod)
+        term = (char_val * power) % mod
+        res = (res + term) % mod
+    return res
 
 def main():
-    T = int(sys.stdin.readline())
-    for _ in range(T):
-        p, q = map(int, sys.stdin.readline().split())
-        d = list(map(int, sys.stdin.readline().split()))
-        if q < len(d):
-            print(d[q])
-            continue
-        # Compute digits up to q
-        while len(d) <= q:
-            current_len = len(d)
-            s = 0
-            for i in range(1, p+1):
-                idx = current_len - i
-                sign = (-1) ** (i + 1)
-                
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    n = int(data[idx])
+    idx += 1
+    q = int(data[idx])
+    idx += 1
+    s = data[idx]
+    idx += 1
