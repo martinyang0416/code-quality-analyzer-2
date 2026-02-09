@@ -1,19 +1,24 @@
 import sys
-import re
-from sympy import expand, sympify, SympifyError
+from collections import deque
 
-def preprocess(s):
-    s = re.sub(r'([a-z])\s*\^\s*(\d)', r'\1**\2', s)
-    s = s.replace(' ', '*')
-    s = re.sub(r'(\))([a-z0-9(])', r'\1*\2', s)
-    s = re.sub(r'([a-z])([a-z0-9(])', r'\1*\2', s)
-    s = re.sub(r'(\d)([a-z(])', r'\1*\2', s)
-    return s
+MOD = 10**9 + 7
 
-def process_block(block):
-    if not block:
-        return
-    correct_line = block[0]
-    processed_correct = preprocess(correct_line)
-    try:
-        correct_expr = expa
+def main():
+    input = sys.stdin.read().split()
+    ptr = 0
+    N = int(input[ptr])
+    ptr += 1
+    words = []
+    for _ in range(N):
+        words.append(input[ptr])
+        ptr += 1
+    t = input[ptr]
+    ptr += 1
+
+    # Build the trie
+    nodes = [{'children': {}, 'failure': -1, 'output': [], 'combined_output': []}]
+
+    for word in words:
+        current = 0
+        for c in word:
+            if c not in nodes[current]['children']:
