@@ -1,19 +1,22 @@
-def reverse_consonants(S):
-    vowels = {'a', 'e', 'i', 'o', 'u'}
-    s_list = list(S)
-    consonants = []
+import sys
+from collections import deque
+
+def main():
+    p = float(sys.stdin.readline())
+    N = int(sys.stdin.readline())
+    edges = [[] for _ in range(N +1)]
+    for _ in range(N-1):
+        x,y,c = map(int, sys.stdin.readline().split())
+        edges[x].append((y, c))
+        edges[y].append((x, c))
     
-    # Collect all consonants
-    for char in s_list:
-        if char not in vowels:
-            consonants.append(char)
+    parent = [0]*(N+1)
+    cost_to_parent = [0]*(N+1)
+    visited = [False]*(N+1)
+    q = deque([1])
+    visited[1] =True
+    parent[1]=0
     
-    # Reverse the consonants list
-    consonants.reverse()
-    
-    # Replace consonants in the original string with the reversed ones
-    ptr = 0
-    for i in range(len(s_list)):
-        if s_list[i] not in vowels:
-            s_list[i] = consonants[ptr]
-       
+    while q:
+        u = q.popleft()
+        f
