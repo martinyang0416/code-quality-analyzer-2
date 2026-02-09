@@ -1,20 +1,24 @@
 import sys
-from collections import deque
 
-def main():
-    sys.setrecursionlimit(1 << 25)
-    n, k = map(int, sys.stdin.readline().split())
-    parents = list(map(int, sys.stdin.readline().split()))
-    children = [[] for _ in range(n+1)]  # 1-based
-    for i in range(2, n+1):
-        p = parents[i-2]
-        children[p].append(i)
+n = int(sys.stdin.readline())
+dp = [-float('inf')] * 10
+dp[0] = 0
+
+for _ in range(n):
+    k = int(sys.stdin.readline())
+    cards = []
+    for __ in range(k):
+        c, d = map(int, sys.stdin.readline().split())
+        cards.append((c, d))
     
-    # Compute depths using BFS
-    depth = [0] * (n + 1)
-    q = deque()
-    q.append(1)
-    while q:
-        u = q.popleft()
-        for v in children[u]:
-       
+    c1, c2, c3 = [], [], []
+    for c, d in cards:
+        if c == 1:
+            c1.append(d)
+        elif c == 2:
+            c2.append(d)
+        elif c == 3:
+            c3.append(d)
+    c1.sort(reverse=True)
+    c2.sort(reverse=True)
+  
