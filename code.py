@@ -1,20 +1,22 @@
 import sys
-from collections import deque
 
-class DSU:
-    def __init__(self, n):
-        self.parent = list(range(n + 1))
-        self.size = [1] * (n + 1)
-        self.diameter = [0] * (n + 1)
-    
-    def find(self, x):
-        if self.parent[x] != x:
-            self.parent[x] = self.find(self.parent[x])
-        return self.parent[x]
-    
-    def union(self, x, y):
-        x_root = self.find(x)
-        y_root = self.find(y)
-        if x_root == y_root:
-            return
-        if self.size[x
+n = int(sys.stdin.readline())
+a = list(map(int, sys.stdin.readline().split()))
+
+min_a = min(a)
+max_a = max(a)
+
+def compute_weakness(x):
+    if n == 0:
+        return 0.0
+    # Compute max subarray sum
+    current_max = a[0] - x
+    max_sum = current_max
+    for num in a[1:]:
+        current_max = max(num - x, current_max + (num - x))
+        max_sum = max(max_sum, current_max)
+    # Compute min subarray sum
+    current_min = a[0] - x
+    min_sum = current_min
+    for num in a[1:]:
+  
