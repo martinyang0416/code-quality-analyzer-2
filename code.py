@@ -1,23 +1,17 @@
-from collections import deque
+def main():
+    s = input().strip()
+    s_list = list(s)
+    n = len(s)
+    res = []
+    for i in range(1, n + 1):
+        prefix = s_list[:i]
+        reversed_p = prefix[::-1]
+        if reversed_p < prefix:
+            res.append(1)
+            s_list[:i] = reversed_p
+        else:
+            res.append(0)
+    print(' '.join(map(str, res)))
 
-n = int(input())
-b = input().strip()
-buildings = list(b)
-queue = deque()
-
-# Initialize queue with all initial 'D's
-for i in range(n):
-    if buildings[i] == 'D':
-        queue.append(i)
-
-# Process each 'D' to destroy adjacent 'S's
-while queue:
-    i = queue.popleft()
-    for dx in (-1, 1):
-        ni = i + dx
-        if 0 <= ni < n and buildings[ni] == 'S':
-            buildings[ni] = 'D'
-            queue.append(ni)
-
-# Count the remaining 'S's
-count = sum(1 for c 
+if __name__ == "__main__":
+    main()
