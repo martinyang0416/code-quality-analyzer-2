@@ -1,20 +1,23 @@
-import sys
+def get_divisors():
+    divisors = []
+    for i in range(1, 361):
+        if 360 % i == 0:
+            divisors.append(i)
+    divisors.sort(reverse=True)
+    return divisors
 
 def main():
+    import sys
     input = sys.stdin.read().split()
     idx = 0
     T = int(input[idx])
     idx += 1
+    divisors = get_divisors()
     for _ in range(T):
-        N = int(input[idx])
-        idx +=1
-        A = list(map(int, input[idx:idx+N]))
-        idx += N
-        sum_A = sum(A)
-        if sum_A >= 0:
-            print("YES")
-        else:
-            print("NO")
-
-if __name__ == "__main__":
-    main()
+        n = int(input[idx])
+        idx += 1
+        a = list(map(int, input[idx:idx+n]))
+        idx += n
+        found = False
+        for d in divisors:
+   
