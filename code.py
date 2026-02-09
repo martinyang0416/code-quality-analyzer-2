@@ -1,19 +1,18 @@
-from collections import deque
+import math
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr += 1
-    for _ in range(T):
-        N, K = int(input[ptr]), int(input[ptr+1])
-        ptr += 2
-        c = list(map(int, input[ptr:ptr+N]))
-        ptr += N
-        
-        # Build the graph
-        graph = [[] for _ in range(N+1)]  # 1-based indexing for left nodes
-        for i in range(1, N+1):
-            for j in range(i+1, N+1):
-                if abs(
+T = int(input())
+for _ in range(T):
+    S = input().strip()
+    n = len(S)
+    total = math.factorial(n)
+    
+    # Check presence of required characters
+    kar_present = all(c in S for c in {'k', 'a', 'r'})
+    shi_present = all(c in S for c in {'s', 'h', 'i'})
+    
+    # Calculate counts using factorial
+    count_kar = math.factorial(n - 2) if kar_present else 0
+    count_shi = math.factorial(n - 2) if shi_present else 0
+    
+    if kar_present and shi_present:
+        count_both
