@@ -1,6 +1,10 @@
-N, M = map(int, input().split())
-bits = bin(N).count('1')
-if bits <= M <= N and (M - bits) % 2 == 0:
+n, m = map(int, input().split())
+
+factorial = 1
+for i in range(1, m + 1):
+    factorial *= i
+
+if factorial % n == 0:
     print("YES")
 else:
     print("NO")
